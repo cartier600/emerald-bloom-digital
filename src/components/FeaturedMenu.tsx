@@ -125,7 +125,6 @@ export function FeaturedMenu() {
                 boxShadow: "0 30px 60px -20px rgba(10,10,20,0.35), 0 12px 24px -12px rgba(255,61,139,0.25)",
                 transition: { type: "spring", stiffness: 220, damping: 18 },
               }}
-              initial-animation-style="ignore"
               className="group relative flex flex-col overflow-hidden rounded-3xl border-2 border-ink bg-cream will-change-transform"
             >
               {/* Ambient hover glow tinted by product type */}
@@ -149,9 +148,9 @@ export function FeaturedMenu() {
 
               {/* Clean product shot placeholder */}
               <motion.div
-                variants={{ rest: { y: 0 }, hover: { y: -5 } }}
+                whileHover={{ y: -5 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="relative mx-4 mt-3 aspect-square overflow-hidden rounded-2xl border-2 border-ink bg-cream"
+                className="relative z-[1] mx-4 mt-3 aspect-square overflow-hidden rounded-2xl border-2 border-ink bg-cream"
               >
                 <div className={`absolute left-0 right-0 top-0 h-1.5 ${p.accent}`} />
                 <img
