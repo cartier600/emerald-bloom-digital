@@ -1,4 +1,18 @@
 import { motion } from "framer-motion";
+import { EASE } from "@/lib/motion";
+
+const container = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.12, delayChildren: 0.15 } },
+};
+const rise = {
+  hidden: { opacity: 0, y: 60 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.9, ease: EASE } },
+};
+const riseSmall = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } },
+};
 
 export function Hero() {
   return (
@@ -21,59 +35,60 @@ export function Hero() {
       </div>
 
       <div className="relative mx-auto mt-16 grid max-w-[1600px] grid-cols-1 gap-10 px-6 md:px-10 lg:grid-cols-12">
-        <div className="lg:col-span-8">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-sm font-bold uppercase tracking-[0.3em] text-ink/60"
-          >
+        <motion.div
+          className="lg:col-span-8"
+          variants={container}
+          initial="hidden"
+          animate="show"
+        >
+          <motion.p variants={riseSmall} className="text-sm font-bold uppercase tracking-[0.3em] text-ink/60">
             ✺ Modern Cannabis · Est. 2024
           </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="font-display mt-6 text-[18vw] leading-[0.82] text-ink md:text-[14vw] lg:text-[12rem] xl:text-[14rem]"
-          >
-            HIGH
-            <br />
-            <span className="inline-block bg-magenta px-4 text-cream">VIBES</span>
-            <br />
-            ONLY<span className="text-magenta">.</span>
-          </motion.h1>
-        </div>
+          <h1 className="font-display mt-6 text-[18vw] leading-[0.82] text-ink md:text-[14vw] lg:text-[12rem] xl:text-[14rem]">
+            <motion.span variants={rise} className="block">HIGH</motion.span>
+            <motion.span variants={rise} className="block">
+              <span className="inline-block bg-magenta px-4 text-cream">VIBES</span>
+            </motion.span>
+            <motion.span variants={rise} className="block">
+              ONLY<span className="text-magenta">.</span>
+            </motion.span>
+          </h1>
+        </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.4, duration: 0.7 }}
+          variants={container}
+          initial="hidden"
+          animate="show"
           className="flex flex-col justify-end gap-6 lg:col-span-4"
         >
-          <p className="text-balance text-lg text-ink/80 md:text-xl">
+          <motion.p variants={riseSmall} className="text-balance text-lg text-ink/80 md:text-xl">
             Small-batch flower, hand-picked concentrates, and edibles that actually
             slap. Pulled from the best growers in the state, delivered with
             love.
-          </p>
-          <div className="flex flex-wrap gap-3">
-            <a
+          </motion.p>
+          <motion.div variants={riseSmall} className="flex flex-wrap gap-3">
+            <motion.a
+              whileHover={{ scale: 1.04, transition: { type: "spring", stiffness: 300, damping: 18 } }}
+              whileTap={{ scale: 0.97 }}
               href="#menu"
-              className="font-display group flex items-center gap-3 rounded-full bg-ink px-8 py-5 text-lg text-cream transition-transform hover:scale-[1.03]"
+              className="font-display group flex items-center gap-3 rounded-full bg-ink px-8 py-5 text-lg text-cream"
             >
               VIEW MENU
               <span className="grid h-8 w-8 place-items-center rounded-full bg-acid text-ink transition-transform group-hover:rotate-45">
                 →
               </span>
-            </a>
-            <a
+            </motion.a>
+            <motion.a
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
               href="#strains"
               className="rounded-full border-2 border-ink px-8 py-5 text-base font-semibold text-ink transition-colors hover:bg-ink hover:text-cream"
             >
               Strain Library
-            </a>
-          </div>
+            </motion.a>
+          </motion.div>
 
-          <div className="grid grid-cols-3 gap-4 pt-6">
+          <motion.div variants={riseSmall} className="grid grid-cols-3 gap-4 pt-6">
             {[
               { v: "47+", l: "Strains" },
               { v: "12k", l: "Happy" },
@@ -84,7 +99,7 @@ export function Hero() {
                 <div className="text-xs uppercase tracking-widest text-ink/60">{s.l}</div>
               </div>
             ))}
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

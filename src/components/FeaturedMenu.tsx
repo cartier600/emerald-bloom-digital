@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { EASE } from "@/lib/motion";
 import flower from "@/assets/product-flower.jpg";
 import edibles from "@/assets/product-edibles.jpg";
 import concentrates from "@/assets/product-concentrates.jpg";
@@ -99,11 +100,16 @@ export function FeaturedMenu() {
           {ITEMS.map((p, i) => (
             <motion.div
               key={p.name}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: i * 0.06 }}
-              className="group relative overflow-hidden rounded-3xl border-2 border-ink bg-cream"
+              transition={{ delay: i * 0.08, duration: 0.8, ease: EASE }}
+              whileHover={{
+                y: -10,
+                boxShadow: "0 30px 60px -20px rgba(10,10,20,0.35), 0 12px 24px -12px rgba(255,61,139,0.25)",
+                transition: { type: "spring", stiffness: 220, damping: 18 },
+              }}
+              className="group relative overflow-hidden rounded-3xl border-2 border-ink bg-cream will-change-transform"
             >
               <div className="relative aspect-square overflow-hidden bg-ink/5">
                 <img
