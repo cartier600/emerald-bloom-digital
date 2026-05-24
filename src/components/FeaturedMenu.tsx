@@ -2,67 +2,57 @@ import { motion } from "framer-motion";
 import { EASE } from "@/lib/motion";
 
 type Product = {
+  category: string;
   brand: string;
   name: string;
   size: string;
   type: string;
-  thc: string;
+  thc?: string;
+  dosage?: string;
   terps?: string;
   price: string;
-  badge: string;
-  badgeColor: string;
-  swatch: string;
   accent: string;
 };
 
 const ITEMS: Product[] = [
   {
+    category: "Flower",
     brand: "Milkweed",
     name: "Alien Space Candy Flower",
     size: "3.5g",
     type: "Indica-Hybrid",
     thc: "28.00%",
     price: "$50.00",
-    badge: "Staff Pick",
-    badgeColor: "bg-cyan-pop text-ink",
-    swatch: "from-cyan-pop via-magenta to-acid",
     accent: "bg-cyan-pop",
   },
   {
-    brand: "Pure Vibe",
-    name: "Durban Poison Smalls Flower",
-    size: "7g",
+    category: "Edibles",
+    brand: "Camino Sours",
+    name: "Tropical Burst \"Energy\" Gummies",
+    size: "10pk",
     type: "Sativa",
-    thc: "23.96%",
-    price: "$40.00",
-    badge: "Uplifting",
-    badgeColor: "bg-acid text-ink",
-    swatch: "from-acid via-lime to-tangerine",
+    dosage: "100mg",
+    price: "$30.00",
     accent: "bg-acid",
   },
   {
-    brand: "Hudson Cannabis",
-    name: "Jack Herer Smalls Flower",
-    size: "7g",
-    type: "Sativa",
-    thc: "24.55%",
-    terps: "1.71%",
-    price: "$40.00",
-    badge: "Top Seller",
-    badgeColor: "bg-magenta text-cream",
-    swatch: "from-magenta via-cyan-pop to-ink",
+    category: "Concentrates",
+    brand: "RYTHM",
+    name: "Afternoon Delight #4 Live Rosin",
+    size: "1g",
+    type: "Hybrid",
+    thc: "72.03%",
+    price: "$60.00",
     accent: "bg-magenta",
   },
   {
-    brand: "The Botanist",
-    name: "Urban Legend Smalls Flower",
-    size: "14g",
-    type: "Indica",
-    thc: "22.64%",
-    price: "$100.00",
-    badge: "Bulk Tier",
-    badgeColor: "bg-tangerine text-ink",
-    swatch: "from-tangerine via-acid to-magenta",
+    category: "Pre-Rolls",
+    brand: "Munchies Brand",
+    name: "French Toast Pre-Roll",
+    size: "1g",
+    type: "Hybrid",
+    thc: "23.37%",
+    price: "$15.00",
     accent: "bg-tangerine",
   },
 ];
@@ -112,25 +102,26 @@ export function FeaturedMenu() {
               }}
               className="group relative flex flex-col overflow-hidden rounded-3xl border-2 border-ink bg-cream will-change-transform"
             >
-              {/* Badge */}
+              {/* Category Badge */}
               <div className="flex items-start justify-between gap-2 p-4 pb-0">
-                <div className={`rounded-full px-3 py-1.5 text-[10px] font-black uppercase tracking-widest ${p.badgeColor}`}>
-                  {p.badge}
+                <div className="rounded-full border-2 border-ink bg-ink px-3 py-1.5 text-[10px] font-black uppercase tracking-widest text-cream">
+                  {p.category}
                 </div>
                 <div className="rounded-full border-2 border-ink bg-cream px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-ink">
                   {p.type}
                 </div>
               </div>
 
-              {/* Stylized product shot placeholder */}
-              <div className={`relative mx-4 mt-3 aspect-square overflow-hidden rounded-2xl border-2 border-ink bg-gradient-to-br ${p.swatch}`}>
-                <div className="absolute inset-0 grid place-items-center">
+              {/* Clean product shot placeholder */}
+              <div className="relative mx-4 mt-3 aspect-square overflow-hidden rounded-2xl border-2 border-ink bg-cream">
+                <div className={`absolute left-0 right-0 top-0 h-1.5 ${p.accent}`} />
+                <div className="absolute inset-0 grid place-items-center p-6">
                   <div className="text-center">
-                    <div className="font-display text-[clamp(2.5rem,8vw,5rem)] leading-[0.85] text-ink/90">
+                    <div className="font-display text-[clamp(2.25rem,7vw,4.5rem)] leading-[0.85] text-ink">
                       {p.name.split(" ")[0].toUpperCase()}
                     </div>
-                    <div className="mt-1 text-[10px] font-black uppercase tracking-[0.3em] text-ink/70">
-                      {p.size}
+                    <div className="mt-2 text-[10px] font-black uppercase tracking-[0.3em] text-ink/60">
+                      {p.category}
                     </div>
                   </div>
                 </div>
@@ -151,10 +142,18 @@ export function FeaturedMenu() {
 
               {/* Metrics row */}
               <div className="mx-5 mt-3 flex items-stretch divide-x-2 divide-ink overflow-hidden rounded-xl border-2 border-ink">
-                <div className="flex-1 px-3 py-2">
-                  <div className="text-[9px] font-bold uppercase tracking-widest text-ink/50">THC</div>
-                  <div className="font-display text-base text-ink">{p.thc}</div>
-                </div>
+                {p.thc && (
+                  <div className="flex-1 px-3 py-2">
+                    <div className="text-[9px] font-bold uppercase tracking-widest text-ink/50">THC</div>
+                    <div className="font-display text-base text-ink">{p.thc}</div>
+                  </div>
+                )}
+                {p.dosage && (
+                  <div className="flex-1 px-3 py-2">
+                    <div className="text-[9px] font-bold uppercase tracking-widest text-ink/50">Dose</div>
+                    <div className="font-display text-base text-ink">{p.dosage}</div>
+                  </div>
+                )}
                 {p.terps && (
                   <div className="flex-1 px-3 py-2">
                     <div className="text-[9px] font-bold uppercase tracking-widest text-ink/50">Terps</div>
