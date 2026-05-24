@@ -1,10 +1,20 @@
+import logoMark from "@/assets/logo-m-mark.png";
+
 export function Nav() {
   return (
     <header className="fixed left-0 right-0 top-0 z-40 px-6 py-5 md:px-10">
       <div className="mx-auto grid max-w-[1600px] grid-cols-2 items-center rounded-full border-2 border-ink bg-cream/90 px-6 py-3 backdrop-blur-md md:grid-cols-3">
         {/* Left: logo */}
-        <a href="#" className="font-display justify-self-start text-2xl tracking-tight text-ink md:text-3xl">
-          MUNCHIES <span className="text-magenta">NY</span>
+        <a href="#" className="flex items-center gap-2 justify-self-start" aria-label="Munchies NY home">
+          <img
+            src={logoMark}
+            alt="Munchies"
+            className="h-10 w-auto md:h-12"
+            draggable={false}
+          />
+          <span className="font-display text-xl tracking-tight text-ink md:text-2xl">
+            NY
+          </span>
         </a>
 
         {/* Center: nav links */}
