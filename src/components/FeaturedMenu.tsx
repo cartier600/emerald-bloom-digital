@@ -142,6 +142,30 @@ export function FeaturedMenu() {
                 style={{ background: glowFor(p.type) }}
                 className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
               />
+              {/* Neon laser border-trace overlay */}
+              <svg
+                aria-hidden
+                className="pointer-events-none absolute inset-0 h-full w-full opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                style={{ filter: `drop-shadow(0 0 6px ${laserFor(p.type)}) drop-shadow(0 0 14px ${laserFor(p.type)})` }}
+              >
+                <motion.rect
+                  x="3"
+                  y="3"
+                  width="calc(100% - 6px)"
+                  height="calc(100% - 6px)"
+                  rx="22"
+                  ry="22"
+                  fill="none"
+                  stroke={laserFor(p.type)}
+                  strokeWidth={2}
+                  strokeLinecap="round"
+                  pathLength={1}
+                  strokeDasharray="0.18 0.82"
+                  initial={{ strokeDashoffset: 1 }}
+                  animate={{ strokeDashoffset: [1, 0] }}
+                  transition={{ duration: 2.4, repeat: Infinity, ease: "linear" }}
+                />
+              </svg>
               {/* Badge + Category */}
               <div className="relative flex items-start justify-between gap-2 p-4 pb-0">
                 <div className="rounded-full border-2 border-ink bg-ink px-3 py-1.5 text-[10px] font-black uppercase tracking-widest text-cream">
