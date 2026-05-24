@@ -112,7 +112,6 @@ export function Hero() {
           className="relative flex items-center justify-center lg:col-span-4"
         >
           <div className="relative aspect-square w-full max-w-md rounded-[2.5rem] border-2 border-ink bg-athletic p-6">
-            <MunchiesMascot />
             {/* Floating product */}
             <motion.div
               animate={{ y: [0, -16, 0] }}
