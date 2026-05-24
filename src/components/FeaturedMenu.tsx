@@ -83,6 +83,12 @@ export function FeaturedMenu() {
     // hybrid + fallback
     return "radial-gradient(circle at 50% 30%, rgba(110,240,180,0.35), rgba(40,200,140,0.18) 45%, transparent 70%)";
   };
+  const laserFor = (type: string) => {
+    const t = type.toLowerCase();
+    if (t.includes("sativa")) return "#ffb02e";
+    if (t.includes("indica")) return "#9b5cff";
+    return "#5cffb0"; // hybrid + fallback
+  };
   return (
     <section id="menu" className="bg-cream px-6 py-24 md:px-10 md:py-32">
       <div className="mx-auto max-w-[1600px]">
