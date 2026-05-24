@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 import { EASE } from "@/lib/motion";
-import logoScript from "@/assets/logo-munchies-script.png";
+import logoScript from "@/assets/logo-munchies-script-white.png";
 
 // Cartoon smoke-bomb in hot magenta puffs up and scatters, revealing the
 // official "Munchies Dispensary New York" script logo underneath. A clean
@@ -95,7 +95,7 @@ export function MunchiesSmokeText() {
         <img
           src={logoScript}
           alt="Munchies Dispensary New York"
-          className="block h-auto w-full max-w-[900px] select-none"
+          className="block h-auto w-full max-w-[1180px] select-none drop-shadow-[0_4px_18px_rgba(0,0,0,0.35)]"
           draggable={false}
         />
       </motion.span>
