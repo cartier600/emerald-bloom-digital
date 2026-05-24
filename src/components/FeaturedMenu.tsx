@@ -96,7 +96,8 @@ export function FeaturedMenu() {
           </div>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {/* 2 cols mobile, 3 cols tablet, 4 cols desktop */}
+        <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6 xl:grid-cols-4">
           {ITEMS.map((p, i) => (
             <motion.div
               key={p.name}

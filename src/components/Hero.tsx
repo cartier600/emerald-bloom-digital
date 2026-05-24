@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { EASE } from "@/lib/motion";
+import hybrid from "@/assets/strain-hybrid.jpg";
 
 const container = {
   hidden: {},
@@ -34,72 +35,113 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="relative mx-auto mt-16 grid max-w-[1600px] grid-cols-1 gap-10 px-6 md:px-10 lg:grid-cols-12">
+      {/* Split 60/40 on desktop, stacked on mobile */}
+      <div className="relative mx-auto mt-16 grid max-w-[1600px] grid-cols-1 gap-10 px-6 md:px-10 lg:grid-cols-10">
+        {/* LEFT 60% — headlines, sub copy, CTAs */}
         <motion.div
-          className="lg:col-span-8"
+          className="flex flex-col justify-between gap-10 lg:col-span-6"
           variants={container}
           initial="hidden"
           animate="show"
         >
-          <motion.p variants={riseSmall} className="text-sm font-bold uppercase tracking-[0.3em] text-ink/60">
-            ✺ Modern Cannabis · Est. 2024
-          </motion.p>
-          <h1 className="font-display mt-6 text-[18vw] leading-[0.82] text-ink md:text-[14vw] lg:text-[12rem] xl:text-[14rem]">
-            <motion.span variants={rise} className="block">HIGH</motion.span>
-            <motion.span variants={rise} className="block">
-              <span className="inline-block bg-magenta px-4 text-cream">VIBES</span>
-            </motion.span>
-            <motion.span variants={rise} className="block">
-              ONLY<span className="text-magenta">.</span>
-            </motion.span>
-          </h1>
+          <div>
+            <motion.p variants={riseSmall} className="text-sm font-bold uppercase tracking-[0.3em] text-ink/60">
+              ✺ Munchies Cannabis Co. · Est. 2024
+            </motion.p>
+            <h1 className="font-display mt-6 text-[18vw] leading-[0.82] text-ink md:text-[14vw] lg:text-[10rem] xl:text-[12rem]">
+              <motion.span variants={rise} className="block">HIGH</motion.span>
+              <motion.span variants={rise} className="block">
+                <span className="inline-block bg-magenta px-4 text-cream">VIBES</span>
+              </motion.span>
+              <motion.span variants={rise} className="block">
+                ONLY<span className="text-magenta">.</span>
+              </motion.span>
+            </h1>
+          </div>
+
+          <div className="flex flex-col gap-6">
+            <motion.p variants={riseSmall} className="text-balance max-w-xl text-base text-ink/80 md:text-lg">
+              Beachside-grown, small-batch flower, hand-picked concentrates, and
+              edibles that actually slap. From our coast to your couch.
+            </motion.p>
+
+            <motion.div variants={riseSmall} className="flex flex-wrap gap-3">
+              <motion.a
+                whileHover={{ scale: 1.04, transition: { type: "spring", stiffness: 300, damping: 18 } }}
+                whileTap={{ scale: 0.97 }}
+                href="#menu"
+                className="font-display group flex items-center gap-3 rounded-full bg-ink px-8 py-5 text-lg text-cream"
+              >
+                VIEW MENU
+                <span className="grid h-8 w-8 place-items-center rounded-full bg-acid text-ink transition-transform group-hover:rotate-45">
+                  →
+                </span>
+              </motion.a>
+              <motion.a
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.97 }}
+                href="#strains"
+                className="rounded-full border-2 border-ink px-8 py-5 text-base font-semibold text-ink transition-colors hover:bg-ink hover:text-cream"
+              >
+                Strain Library
+              </motion.a>
+            </motion.div>
+
+            <motion.div variants={riseSmall} className="grid max-w-xl grid-cols-3 gap-4 pt-4">
+              {[
+                { v: "47+", l: "Strains" },
+                { v: "12k", l: "Happy" },
+                { v: "4.9★", l: "Rated" },
+              ].map((s) => (
+                <div key={s.l} className="border-t-2 border-ink pt-3">
+                  <div className="font-display text-3xl text-ink md:text-4xl">{s.v}</div>
+                  <div className="text-xs uppercase tracking-widest text-ink/60">{s.l}</div>
+                </div>
+              ))}
+            </motion.div>
+          </div>
         </motion.div>
 
+        {/* RIGHT 40% — floating product showcase */}
         <motion.div
-          variants={container}
-          initial="hidden"
-          animate="show"
-          className="flex flex-col justify-end gap-6 lg:col-span-4"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, ease: EASE, delay: 0.4 }}
+          className="relative flex items-center justify-center lg:col-span-4"
         >
-          <motion.p variants={riseSmall} className="text-balance text-lg text-ink/80 md:text-xl">
-            Small-batch flower, hand-picked concentrates, and edibles that actually
-            slap. Pulled from the best growers in the state, delivered with
-            love.
-          </motion.p>
-          <motion.div variants={riseSmall} className="flex flex-wrap gap-3">
-            <motion.a
-              whileHover={{ scale: 1.04, transition: { type: "spring", stiffness: 300, damping: 18 } }}
-              whileTap={{ scale: 0.97 }}
-              href="#menu"
-              className="font-display group flex items-center gap-3 rounded-full bg-ink px-8 py-5 text-lg text-cream"
+          <div className="relative aspect-square w-full max-w-md rounded-[2.5rem] border-2 border-ink bg-acid p-6">
+            {/* Floating product */}
+            <motion.div
+              animate={{ y: [0, -16, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              className="relative h-full w-full overflow-hidden rounded-[2rem] border-2 border-ink bg-cream"
             >
-              VIEW MENU
-              <span className="grid h-8 w-8 place-items-center rounded-full bg-acid text-ink transition-transform group-hover:rotate-45">
-                →
-              </span>
-            </motion.a>
-            <motion.a
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
-              href="#strains"
-              className="rounded-full border-2 border-ink px-8 py-5 text-base font-semibold text-ink transition-colors hover:bg-ink hover:text-cream"
+              <img
+                src={hybrid}
+                alt="Featured strain"
+                width={1024}
+                height={1280}
+                className="h-full w-full object-cover"
+              />
+            </motion.div>
+            {/* Floating badges */}
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="font-display absolute -left-4 top-8 rounded-full border-2 border-ink bg-magenta px-4 py-2 text-xs uppercase tracking-widest text-cream"
             >
-              Strain Library
-            </motion.a>
-          </motion.div>
-
-          <motion.div variants={riseSmall} className="grid grid-cols-3 gap-4 pt-6">
-            {[
-              { v: "47+", l: "Strains" },
-              { v: "12k", l: "Happy" },
-              { v: "4.9★", l: "Rated" },
-            ].map((s) => (
-              <div key={s.l} className="border-t-2 border-ink pt-3">
-                <div className="font-display text-3xl text-ink md:text-4xl">{s.v}</div>
-                <div className="text-xs uppercase tracking-widest text-ink/60">{s.l}</div>
-              </div>
-            ))}
-          </motion.div>
+              ✺ Fresh Drop
+            </motion.div>
+            <motion.div
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+              className="absolute -bottom-5 -right-3 rounded-2xl border-2 border-ink bg-cream px-4 py-3 text-left shadow-lg"
+            >
+              <p className="text-[10px] font-bold uppercase tracking-widest text-ink/60">Today's pick</p>
+              <p className="font-display text-lg text-ink">Wedding Cake</p>
+              <p className="text-xs text-ink/60">26% THC · $38/8th</p>
+            </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>

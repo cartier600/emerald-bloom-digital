@@ -1,207 +1,155 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
+import { useState } from "react";
+import { motion } from "framer-motion";
 import { EASE } from "@/lib/motion";
 import sativa from "@/assets/strain-sativa.jpg";
 import indica from "@/assets/strain-indica.jpg";
 import hybrid from "@/assets/strain-hybrid.jpg";
 
-// Resolved hex equivalents of the oklch brand tokens so framer-motion
-// can interpolate them smoothly with useTransform.
-const COLORS = {
-  acid: "#d6f23a",
-  ink: "#0a0a14",
-  cream: "#f7f1e3",
-  violetDeep: "#2a1559",
-  lime: "#6fe26a",
-  magenta: "#ff3d8b",
-};
-
 const STRAINS = [
   {
     id: "sativa",
     name: "SATIVA",
+    num: "01",
     tag: "Daytime Energy",
-    copy: "Cerebral, uplifting, creative. The morning espresso of cannabis. Think bright mornings, long walks, the hum of a good idea taking shape.",
+    copy: "Cerebral, uplifting, creative. The morning espresso of cannabis.",
     image: sativa,
     feel: ["Energetic", "Focus", "Creative"],
-    bg: COLORS.acid,
-    text: COLORS.ink,
-    accent: COLORS.magenta,
-  },
-  {
-    id: "indica",
-    name: "INDICA",
-    tag: "Midnight Calm",
-    copy: "Heavy, deep, sedating. For couch-locks and dream chasers. The kind of quiet that wraps around your shoulders and slows the whole room down.",
-    image: indica,
-    feel: ["Relax", "Sleep", "Body"],
-    bg: COLORS.violetDeep,
-    text: COLORS.cream,
-    accent: COLORS.acid,
+    bg: "bg-acid",
+    text: "text-ink",
+    border: "border-ink",
+    accent: "bg-magenta text-cream",
   },
   {
     id: "hybrid",
     name: "HYBRID",
+    num: "02",
     tag: "Best of Both",
-    copy: "Balanced, versatile, dialed. The sweet spot between sky and earth. Built for whatever your day decides to throw at you next.",
+    copy: "Balanced, versatile, dialed. The sweet spot between sky and earth.",
     image: hybrid,
     feel: ["Balance", "Mood", "Flow"],
-    bg: COLORS.lime,
-    text: COLORS.ink,
-    accent: COLORS.violetDeep,
+    bg: "bg-lime",
+    text: "text-ink",
+    border: "border-ink",
+    accent: "bg-violet-deep text-cream",
+  },
+  {
+    id: "indica",
+    name: "INDICA",
+    num: "03",
+    tag: "Midnight Calm",
+    copy: "Heavy, deep, sedating. For couch-locks and dream chasers.",
+    image: indica,
+    feel: ["Relax", "Sleep", "Body"],
+    bg: "bg-violet-deep",
+    text: "text-cream",
+    border: "border-cream",
+    accent: "bg-acid text-ink",
   },
 ];
 
-function Panel({
-  strain,
-  index,
-  progress,
-}: {
-  strain: (typeof STRAINS)[number];
-  index: number;
-  progress: MotionValue<number>;
-}) {
-  // Each panel takes 1/3 of the scroll. Fade in/out across its window.
-  const start = index / STRAINS.length;
-  const end = (index + 1) / STRAINS.length;
-  const mid = (start + end) / 2;
-
-  const opacity = useTransform(progress, [start, mid, end], [0.15, 1, 0.15]);
-  const y = useTransform(progress, [start, end], [60, -60]);
-  const scale = useTransform(progress, [start, mid, end], [0.96, 1, 0.96]);
-
-  return (
-    <motion.div
-      style={{ opacity, y, scale, color: strain.text }}
-      className="absolute inset-0 flex items-center px-6 md:px-10"
-    >
-      <div className="mx-auto grid w-full max-w-[1600px] grid-cols-1 items-center gap-10 md:grid-cols-2">
-        <motion.div
-          className="relative aspect-[4/5] overflow-hidden rounded-3xl border-2"
-          style={{ borderColor: strain.text }}
-          whileHover={{ scale: 1.02 }}
-          transition={{ type: "spring", stiffness: 200, damping: 20 }}
-        >
-          <img
-            src={strain.image}
-            alt={`${strain.name} cannabis`}
-            width={1024}
-            height={1280}
-            loading="lazy"
-            className="h-full w-full object-cover"
-          />
-          <div
-            className="absolute left-4 top-4 rounded-full border-2 px-3 py-1.5 text-[10px] font-black uppercase tracking-widest"
-            style={{ borderColor: strain.text, color: strain.text }}
-          >
-            0{index + 1} · {strain.tag}
-          </div>
-        </motion.div>
-
-        <div>
-          <p className="text-sm font-bold uppercase tracking-[0.3em] opacity-70">
-            ✺ Now showing
-          </p>
-          <h3 className="font-display mt-4 text-7xl md:text-8xl lg:text-[10rem]">
-            {strain.name}
-          </h3>
-          <p className="mt-6 max-w-md text-lg opacity-85 md:text-xl">{strain.copy}</p>
-          <div className="mt-6 flex flex-wrap gap-2">
-            {strain.feel.map((f) => (
-              <span
-                key={f}
-                className="rounded-full border-2 px-4 py-1.5 text-xs font-bold uppercase tracking-widest"
-                style={{ borderColor: strain.text }}
-              >
-                {f}
-              </span>
-            ))}
-          </div>
-          <motion.a
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.97 }}
-            href="#menu"
-            className="font-display mt-10 inline-flex items-center gap-3 rounded-full px-8 py-4 text-base"
-            style={{ background: strain.text, color: strain.bg }}
-          >
-            EXPLORE {strain.name}
-            <span className="grid h-7 w-7 place-items-center rounded-full" style={{ background: strain.accent, color: strain.text }}>
-              →
-            </span>
-          </motion.a>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
-
 export function Strains() {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end end"],
-  });
-
-  // Smoothly morph the background through all three strain themes
-  const background = useTransform(
-    scrollYProgress,
-    [0, 0.33, 0.66, 1],
-    [STRAINS[0].bg, STRAINS[0].bg, STRAINS[1].bg, STRAINS[2].bg],
-  );
-  const headerColor = useTransform(
-    scrollYProgress,
-    [0, 0.33, 0.66, 1],
-    [STRAINS[0].text, STRAINS[0].text, STRAINS[1].text, STRAINS[2].text],
-  );
+  const [active, setActive] = useState<number | null>(null);
 
   return (
-    <section id="strains" ref={ref} className="relative" style={{ height: "320vh" }}>
-      <motion.div
-        style={{ background, color: headerColor }}
-        className="sticky top-0 h-screen w-full overflow-hidden"
-      >
-        {/* Sticky header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: EASE }}
-          className="pointer-events-none absolute left-0 right-0 top-0 z-10 flex items-start justify-between px-6 pt-10 md:px-10"
-        >
+    <section id="strains" className="relative w-full overflow-hidden">
+      {/* Section header */}
+      <div className="bg-cream px-6 pt-24 pb-10 md:px-10">
+        <div className="mx-auto flex max-w-[1600px] flex-wrap items-end justify-between gap-6 border-b-2 border-ink pb-8">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.3em] opacity-70">
+            <p className="text-sm font-bold uppercase tracking-[0.3em] text-ink/60">
               ✺ Strains World
             </p>
-            <h2 className="font-display mt-2 text-3xl md:text-5xl">FIND YOUR FREQUENCY</h2>
+            <h2 className="font-display mt-3 text-5xl text-ink md:text-7xl lg:text-8xl">
+              FIND YOUR FREQUENCY
+            </h2>
           </div>
-          <div className="hidden gap-2 md:flex">
-            {STRAINS.map((s, i) => (
-              <DotIndicator key={s.id} progress={scrollYProgress} index={i} />
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Panels stack in same space; opacity driven by scroll */}
-        <div className="relative h-full w-full">
-          {STRAINS.map((s, i) => (
-            <Panel key={s.id} strain={s} index={i} progress={scrollYProgress} />
-          ))}
+          <p className="max-w-md text-ink/70">
+            Hover or tap a column. Each one expands to give you a closer look at
+            what it does.
+          </p>
         </div>
-      </motion.div>
-    </section>
-  );
-}
+      </div>
 
-function DotIndicator({ progress, index }: { progress: MotionValue<number>; index: number }) {
-  const start = index / STRAINS.length;
-  const end = (index + 1) / STRAINS.length;
-  const mid = (start + end) / 2;
-  const scale = useTransform(progress, [start, mid, end], [1, 2.4, 1]);
-  const opacity = useTransform(progress, [start, mid, end], [0.4, 1, 0.4]);
-  return (
-    <motion.span
-      style={{ scale, opacity, background: "currentColor" }}
-      className="block h-2 w-2 rounded-full"
-    />
+      {/* 3-column flex grow on desktop, stacked on mobile.
+          On mobile each panel is 33vh tall, total 100vh. */}
+      <div
+        className="flex h-screen min-h-[640px] w-full flex-col md:flex-row"
+        onMouseLeave={() => setActive(null)}
+      >
+        {STRAINS.map((s, i) => {
+          const isActive = active === i;
+          const anyActive = active !== null;
+          return (
+            <motion.button
+              key={s.id}
+              onMouseEnter={() => setActive(i)}
+              onFocus={() => setActive(i)}
+              onClick={() => setActive(isActive ? null : i)}
+              animate={{
+                flex: isActive ? 2 : anyActive ? 0.75 : 1,
+              }}
+              transition={{ duration: 0.7, ease: EASE }}
+              className={`group relative flex h-full w-full flex-col justify-between overflow-hidden border-ink p-6 text-left md:p-10 ${s.bg} ${s.text} ${
+                i < STRAINS.length - 1 ? "border-b-2 md:border-b-0 md:border-r-2" : ""
+              }`}
+              style={{ flex: 1 }}
+            >
+              {/* Top row: number + tag */}
+              <div className="relative z-10 flex items-start justify-between">
+                <span className="font-display text-5xl md:text-6xl">{s.num}</span>
+                <span className="text-[10px] font-bold uppercase tracking-[0.25em] opacity-80">
+                  {s.tag}
+                </span>
+              </div>
+
+              {/* Image container — visible when active, fades to peek otherwise */}
+              <motion.div
+                animate={{ opacity: isActive ? 1 : 0.35, scale: isActive ? 1 : 0.95 }}
+                transition={{ duration: 0.6, ease: EASE }}
+                className={`relative z-10 mx-auto my-6 aspect-square w-full max-w-[280px] overflow-hidden rounded-2xl border-2 ${s.border}`}
+              >
+                <img
+                  src={s.image}
+                  alt={`${s.name} strain`}
+                  width={1024}
+                  height={1280}
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                />
+              </motion.div>
+
+              {/* Bottom: name + reveal copy */}
+              <div className="relative z-10">
+                <h3 className="font-display text-5xl leading-none md:text-7xl lg:text-8xl">
+                  {s.name}
+                </h3>
+                <motion.div
+                  animate={{ opacity: isActive ? 1 : 0, height: isActive ? "auto" : 0 }}
+                  transition={{ duration: 0.4, ease: EASE }}
+                  className="overflow-hidden"
+                >
+                  <p className="mt-4 max-w-md text-base opacity-85">{s.copy}</p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {s.feel.map((f) => (
+                      <span
+                        key={f}
+                        className={`rounded-full border-2 ${s.border} px-3 py-1 text-[10px] font-bold uppercase tracking-widest`}
+                      >
+                        {f}
+                      </span>
+                    ))}
+                  </div>
+                  <span
+                    className={`mt-5 inline-flex items-center gap-2 rounded-full px-5 py-2 text-xs font-bold uppercase tracking-widest ${s.accent}`}
+                  >
+                    Explore {s.name} →
+                  </span>
+                </motion.div>
+              </div>
+            </motion.button>
+          );
+        })}
+      </div>
+    </section>
   );
 }
