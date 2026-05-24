@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { AgeGate } from "@/components/AgeGate";
 import { Nav } from "@/components/Nav";
-import { Hero } from "@/components/Hero";
 import { IntroPreloader } from "@/components/IntroPreloader";
 import { Strains } from "@/components/Strains";
 import { FeaturedMenu } from "@/components/FeaturedMenu";
@@ -30,10 +29,9 @@ function Index() {
       <IntroPreloader />
       <AgeGate />
       <Nav />
-      <Hero />
-      <Strains />
       <WeedToMenuTransition />
       <FeaturedMenu />
+      <Strains />
       <Footer />
     </main>
   );

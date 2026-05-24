@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import { useRef, useState } from "react";
+import { MunchiesSmokeText } from "./MunchiesSmokeText";
 
 // Scroll-tied transition between the Sativa (yellow) world and THE MENU.
 // A green fractal/bud wave accelerates downward, collapses into a black
@@ -37,6 +38,11 @@ export function WeedToMenuTransition() {
   const mOpacity = useTransform(scrollYProgress, [0.82, 0.95], [0, 1]);
   const mScale = useTransform(scrollYProgress, [0.82, 0.95, 1], [0.4, 1.1, 1]);
 
+  // Hero headline overlay: visible at the top, fades as the vortex takes over
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.18, 0.32], [1, 1, 0]);
+  const heroY = useTransform(scrollYProgress, [0, 0.35], ["0%", "-10%"]);
+  const heroScale = useTransform(scrollYProgress, [0, 0.35], [1, 0.92]);
+
   // Sticky stage color for the inner content (text contrast)
   const [phase, setPhase] = useState<"start" | "mid" | "end">("start");
   useMotionValueEvent(scrollYProgress, "change", (v) => {
@@ -53,6 +59,28 @@ export function WeedToMenuTransition() {
       aria-label="Transition into the menu"
     >
       <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden">
+        {/* Hero headline overlay — sits on top of the vortex as the opening fold */}
+        <motion.div
+          style={{ opacity: heroOpacity, y: heroY, scale: heroScale }}
+          className="pointer-events-none absolute inset-0 z-20 mx-auto flex max-w-[1400px] flex-col items-center justify-center px-6 text-center"
+        >
+          <p className="mb-6 text-xs font-bold uppercase tracking-[0.4em] text-cream/80">
+            ✺ The Rockaways' First Legal Dispensary
+          </p>
+          <h1 className="font-display leading-[0.85] text-cream">
+            <span className="sr-only">Munchies NY</span>
+            <span className="block w-full max-w-[900px]">
+              <MunchiesSmokeText />
+            </span>
+            <span className="mt-4 inline-block rounded-md border-2 border-ink bg-magenta px-6 py-2 text-6xl text-cream md:text-8xl">
+              NY
+            </span>
+          </h1>
+          <p className="mt-8 text-sm font-semibold uppercase tracking-[0.3em] text-cream/70">
+            Scroll ↓
+          </p>
+        </motion.div>
+
         {/* Fractal bud wave (layered blobs) */}
         <motion.svg
           aria-hidden
