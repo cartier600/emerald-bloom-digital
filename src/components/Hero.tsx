@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { EASE } from "@/lib/motion";
 import hybrid from "@/assets/strain-hybrid.jpg";
 import { MunchiesSmokeText } from "./MunchiesSmokeText";
+import { MunchiesMascot } from "./MunchiesMascot";
 
 const container = {
   hidden: {},
@@ -109,6 +110,7 @@ export function Hero() {
           className="relative flex items-center justify-center lg:col-span-4"
         >
           <div className="relative aspect-square w-full max-w-md rounded-[2.5rem] border-2 border-ink bg-acid p-6">
+            <MunchiesMascot />
             {/* Floating product */}
             <motion.div
               animate={{ y: [0, -16, 0] }}
