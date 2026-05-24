@@ -19,9 +19,9 @@ const riseSmall = {
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-cream pt-32 pb-16">
+    <section className="relative min-h-screen overflow-hidden bg-forest pt-32 pb-16 text-cream">
       {/* Marquee top */}
-      <div className="absolute left-0 right-0 top-24 overflow-hidden border-y-2 border-ink bg-acid py-3">
+      <div className="absolute left-0 right-0 top-24 overflow-hidden border-y-2 border-ink bg-athletic py-3">
         <div className="marquee-track flex whitespace-nowrap">
           {Array.from({ length: 2 }).map((_, i) => (
             <div key={i} className="flex shrink-0 items-center gap-8 pr-8">
@@ -47,21 +47,24 @@ export function Hero() {
           animate="show"
         >
           <div>
-            <motion.p variants={riseSmall} className="text-sm font-bold uppercase tracking-[0.3em] text-ink/60">
+            <motion.p variants={riseSmall} className="text-sm font-bold uppercase tracking-[0.3em] text-cream/70">
               THE ROCKAWAYS' FIRST LEGAL CANNABIS DISPENSARY
             </motion.p>
-            <h1 className="font-display mt-6 text-[18vw] leading-[0.82] text-ink md:text-[14vw] lg:text-[10rem] xl:text-[12rem]">
-              <motion.span variants={rise} className="block">
+            <h1 className="font-display mt-6 leading-[0.82] text-cream">
+              <span className="sr-only">Munchies Dispensary New York</span>
+              <motion.span variants={rise} className="block w-full max-w-[760px]">
                 <MunchiesSmokeText />
               </motion.span>
-              <motion.span variants={rise} className="block">
-                <span className="inline-block bg-magenta px-4 text-cream">NY</span>
+              <motion.span variants={rise} className="mt-4 block">
+                <span className="font-display inline-block rounded-md border-2 border-ink bg-athletic px-5 py-2 text-5xl text-ink md:text-7xl">
+                  NY
+                </span>
               </motion.span>
             </h1>
           </div>
 
           <div className="flex flex-col gap-6">
-            <motion.p variants={riseSmall} className="text-balance max-w-xl text-base text-ink/80 md:text-lg">
+            <motion.p variants={riseSmall} className="text-balance max-w-xl text-base text-cream/85 md:text-lg">
               Premium cannabis, local vibes. Serving the Rockaways with top-shelf flower, premium concentrates, and curated edibles.
             </motion.p>
 
@@ -70,10 +73,10 @@ export function Hero() {
                 whileHover={{ scale: 1.04, transition: { type: "spring", stiffness: 300, damping: 18 } }}
                 whileTap={{ scale: 0.97 }}
                 href="#menu"
-                className="font-display group flex items-center gap-3 rounded-full bg-ink px-8 py-5 text-lg text-cream"
+                className="font-display group flex items-center gap-3 rounded-full bg-athletic px-8 py-5 text-lg text-ink"
               >
                 VIEW MENU
-                <span className="grid h-8 w-8 place-items-center rounded-full bg-acid text-ink transition-transform group-hover:rotate-45">
+                <span className="grid h-8 w-8 place-items-center rounded-full bg-ink text-athletic transition-transform group-hover:rotate-45">
                   →
                 </span>
               </motion.a>
@@ -81,7 +84,7 @@ export function Hero() {
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.97 }}
                 href="#strains"
-                className="rounded-full border-2 border-ink px-8 py-5 text-base font-semibold text-ink transition-colors hover:bg-ink hover:text-cream"
+                className="rounded-full border-2 border-cream px-8 py-5 text-base font-semibold text-cream transition-colors hover:bg-cream hover:text-forest"
               >
                 Strain Library
               </motion.a>
@@ -93,9 +96,9 @@ export function Hero() {
                 { v: "12k", l: "Happy" },
                 { v: "4.9★", l: "Rated" },
               ].map((s) => (
-                <div key={s.l} className="border-t-2 border-ink pt-3">
-                  <div className="font-display text-3xl text-ink md:text-4xl">{s.v}</div>
-                  <div className="text-xs uppercase tracking-widest text-ink/60">{s.l}</div>
+                <div key={s.l} className="border-t-2 border-cream/40 pt-3">
+                  <div className="font-display text-3xl text-athletic md:text-4xl">{s.v}</div>
+                  <div className="text-xs uppercase tracking-widest text-cream/70">{s.l}</div>
                 </div>
               ))}
             </motion.div>
@@ -109,7 +112,7 @@ export function Hero() {
           transition={{ duration: 1, ease: EASE, delay: 0.4 }}
           className="relative flex items-center justify-center lg:col-span-4"
         >
-          <div className="relative aspect-square w-full max-w-md rounded-[2.5rem] border-2 border-ink bg-acid p-6">
+          <div className="relative aspect-square w-full max-w-md rounded-[2.5rem] border-2 border-ink bg-athletic p-6">
             <MunchiesMascot />
             {/* Floating product */}
             <motion.div
