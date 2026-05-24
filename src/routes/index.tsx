@@ -4,6 +4,7 @@ import { Nav } from "@/components/Nav";
 import { Hero } from "@/components/Hero";
 import { Strains } from "@/components/Strains";
 import { FeaturedMenu } from "@/components/FeaturedMenu";
+import { WeedToMenuTransition } from "@/components/WeedToMenuTransition";
 import { Footer } from "@/components/Footer";
 
 export const Route = createFileRoute("/")({
@@ -29,6 +30,7 @@ function Index() {
       <Nav />
       <Hero />
       <Strains />
+      <WeedToMenuTransition />
       <FeaturedMenu />
       <Footer />
     </main>
