@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { EASE } from "@/lib/motion";
 import hybrid from "@/assets/strain-hybrid.jpg";
+import { MunchiesSmokeText } from "./MunchiesSmokeText";
 
 const container = {
   hidden: {},
@@ -49,7 +50,9 @@ export function Hero() {
               THE ROCKAWAYS' FIRST LEGAL CANNABIS DISPENSARY
             </motion.p>
             <h1 className="font-display mt-6 text-[18vw] leading-[0.82] text-ink md:text-[14vw] lg:text-[10rem] xl:text-[12rem]">
-              <motion.span variants={rise} className="block">MUNCHIES</motion.span>
+              <motion.span variants={rise} className="block">
+                <MunchiesSmokeText />
+              </motion.span>
               <motion.span variants={rise} className="block">
                 <span className="inline-block bg-magenta px-4 text-cream">NY</span>
               </motion.span>
