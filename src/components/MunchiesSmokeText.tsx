@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { EASE } from "@/lib/motion";
 
 // "MUNCHIES" with the I intentionally missing throughout the entrance.
@@ -26,6 +26,14 @@ export function MunchiesSmokeText() {
 
   // Unique id so multiple instances don't collide on the SVG clipPath
   const clipId = useMemo(() => `m-bite-${Math.random().toString(36).slice(2, 9)}`, []);
+
+  // Trigger the bite right after the last letter solidifies.
+  // Last letter delay = 0.2 + 6*0.07 = 0.62, duration 0.9 → ends ~1.52s.
+  const [bitten, setBitten] = useState(false);
+  useEffect(() => {
+    const t = setTimeout(() => setBitten(true), 1500);
+    return () => clearTimeout(t);
+  }, []);
 
   return (
     <div className="relative inline-block">
@@ -85,7 +93,7 @@ export function MunchiesSmokeText() {
                 ease: EASE,
               }}
               className="relative inline-block"
-              style={isFirstM ? { clipPath: `url(#${clipId})` } : undefined}
+              style={isFirstM && bitten ? { clipPath: `url(#${clipId})` } : undefined}
             >
               {ch}
               {isFirstM && (
