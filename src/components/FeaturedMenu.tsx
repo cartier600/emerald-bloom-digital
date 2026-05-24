@@ -1,5 +1,9 @@
 import { motion } from "framer-motion";
 import { EASE } from "@/lib/motion";
+import flowerImg from "@/assets/product-flower.jpg";
+import gummiesImg from "@/assets/product-gummies.jpg";
+import rosinImg from "@/assets/product-rosin.jpg";
+import prerollImg from "@/assets/product-preroll.jpg";
 
 type Product = {
   category: string;
@@ -13,6 +17,7 @@ type Product = {
   price: string;
   badge: string;
   accent: string;
+  image: string;
 };
 
 const ITEMS: Product[] = [
@@ -26,6 +31,7 @@ const ITEMS: Product[] = [
     price: "$50.00",
     badge: "Staff Pick",
     accent: "bg-cyan-pop",
+    image: flowerImg,
   },
   {
     category: "Edibles",
@@ -37,6 +43,7 @@ const ITEMS: Product[] = [
     price: "$28.00",
     badge: "Local Favorite",
     accent: "bg-acid",
+    image: gummiesImg,
   },
   {
     category: "Concentrates",
@@ -48,6 +55,7 @@ const ITEMS: Product[] = [
     price: "$60.00",
     badge: "New Drop",
     accent: "bg-magenta",
+    image: rosinImg,
   },
   {
     category: "Pre-Rolls",
@@ -59,6 +67,7 @@ const ITEMS: Product[] = [
     price: "$75.00",
     badge: "Top Shelf Potency",
     accent: "bg-tangerine",
+    image: prerollImg,
   },
 ];
 
@@ -120,16 +129,14 @@ export function FeaturedMenu() {
               {/* Clean product shot placeholder */}
               <div className="relative mx-4 mt-3 aspect-square overflow-hidden rounded-2xl border-2 border-ink bg-cream">
                 <div className={`absolute left-0 right-0 top-0 h-1.5 ${p.accent}`} />
-                <div className="absolute inset-0 grid place-items-center p-6">
-                  <div className="text-center">
-                    <div className="font-display text-[clamp(2.25rem,7vw,4.5rem)] leading-[0.85] text-ink">
-                      {p.name.split(" ")[0].toUpperCase()}
-                    </div>
-                    <div className="mt-2 text-[10px] font-black uppercase tracking-[0.3em] text-ink/60">
-                      {p.category}
-                    </div>
-                  </div>
-                </div>
+                <img
+                  src={p.image}
+                  alt={p.name}
+                  loading="lazy"
+                  width={1024}
+                  height={1024}
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
                 <div className="absolute bottom-2 right-2 rounded-full border-2 border-ink bg-cream px-2.5 py-1 text-[10px] font-black uppercase tracking-widest text-ink">
                   {p.size}
                 </div>
