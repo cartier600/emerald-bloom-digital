@@ -126,7 +126,7 @@ export function MunchiesSmokeText() {
                     aria-hidden
                     initial={{ scale: 0, opacity: 0 }}
                     animate={{ scale: [0, 1.6, 2.2], opacity: [0, 0.9, 0] }}
-                    transition={{ delay: 1.4, duration: 0.55, ease: EASE }}
+                    transition={{ delay: 1.45, duration: 0.6, ease: EASE }}
                     className="pointer-events-none absolute left-[-4%] bottom-[-4%] block aspect-square w-[34%] rounded-full bg-acid mix-blend-screen"
                   />
                 </>
