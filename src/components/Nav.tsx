@@ -4,7 +4,7 @@ export function Nav() {
       <div className="mx-auto grid max-w-[1600px] grid-cols-2 items-center rounded-full border-2 border-ink bg-cream/90 px-6 py-3 backdrop-blur-md md:grid-cols-3">
         {/* Left: logo */}
         <a href="#" className="font-display justify-self-start text-2xl tracking-tight text-ink md:text-3xl">
-          MUNCHIES<span className="text-magenta">.</span>
+          MUNCHIES <span className="text-magenta">NY</span>
         </a>
 
         {/* Center: nav links */}
