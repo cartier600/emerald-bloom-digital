@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { EASE } from "@/lib/motion";
 import hybrid from "@/assets/strain-hybrid.jpg";
 import { MunchiesSmokeText } from "./MunchiesSmokeText";
-import { MunchiesMascot } from "./MunchiesMascot";
 
 const container = {
   hidden: {},
@@ -25,7 +24,7 @@ export function Hero() {
         <div className="marquee-track flex whitespace-nowrap">
           {Array.from({ length: 2 }).map((_, i) => (
             <div key={i} className="flex shrink-0 items-center gap-8 pr-8">
-              {["FRESH DROP", "LIVE ROSIN", "21+ ONLY", "FREE DELIVERY", "GROWN IN HOUSE", "NEW STRAINS"].map(
+              {["FRESH DROP", "LIVE ROSIN", "21+ ONLY", "FREE DELIVERY", "PREMIUM NY BRANDS", "NEW STRAINS"].map(
                 (t) => (
                   <span key={t} className="font-display flex items-center gap-8 text-lg text-ink">
                     {t} <span>✺</span>
