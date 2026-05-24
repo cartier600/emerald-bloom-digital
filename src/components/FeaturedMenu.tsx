@@ -72,6 +72,17 @@ const ITEMS: Product[] = [
 ];
 
 export function FeaturedMenu() {
+  const glowFor = (type: string) => {
+    const t = type.toLowerCase();
+    if (t.includes("sativa")) {
+      return "radial-gradient(circle at 50% 30%, rgba(255,176,46,0.35), rgba(255,110,30,0.18) 45%, transparent 70%)";
+    }
+    if (t.includes("indica")) {
+      return "radial-gradient(circle at 50% 30%, rgba(150,90,220,0.38), rgba(70,40,140,0.22) 45%, transparent 70%)";
+    }
+    // hybrid + fallback
+    return "radial-gradient(circle at 50% 30%, rgba(110,240,180,0.35), rgba(40,200,140,0.18) 45%, transparent 70%)";
+  };
   return (
     <section id="menu" className="bg-cream px-6 py-24 md:px-10 md:py-32">
       <div className="mx-auto max-w-[1600px]">
@@ -116,8 +127,17 @@ export function FeaturedMenu() {
               }}
               className="group relative flex flex-col overflow-hidden rounded-3xl border-2 border-ink bg-cream will-change-transform"
             >
+              {/* Ambient hover glow tinted by product type */}
+              <motion.div
+                aria-hidden
+                initial={{ opacity: 0 }}
+                whileHover={{ opacity: 1 }}
+                transition={{ duration: 0.45, ease: EASE }}
+                style={{ background: glowFor(p.type) }}
+                className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              />
               {/* Badge + Category */}
-              <div className="flex items-start justify-between gap-2 p-4 pb-0">
+              <div className="relative flex items-start justify-between gap-2 p-4 pb-0">
                 <div className="rounded-full border-2 border-ink bg-ink px-3 py-1.5 text-[10px] font-black uppercase tracking-widest text-cream">
                   {p.badge}
                 </div>
@@ -127,7 +147,11 @@ export function FeaturedMenu() {
               </div>
 
               {/* Clean product shot placeholder */}
-              <div className="relative mx-4 mt-3 aspect-square overflow-hidden rounded-2xl border-2 border-ink bg-cream">
+              <motion.div
+                whileHover={{ y: -5 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="relative z-[1] mx-4 mt-3 aspect-square overflow-hidden rounded-2xl border-2 border-ink bg-cream"
+              >
                 <div className={`absolute left-0 right-0 top-0 h-1.5 ${p.accent}`} />
                 <img
                   src={p.image}
@@ -140,10 +164,10 @@ export function FeaturedMenu() {
                 <div className="absolute bottom-2 right-2 rounded-full border-2 border-ink bg-cream px-2.5 py-1 text-[10px] font-black uppercase tracking-widest text-ink">
                   {p.size}
                 </div>
-              </div>
+              </motion.div>
 
               {/* Brand + Title */}
-              <div className="px-5 pt-4">
+              <div className="relative px-5 pt-4">
                 <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-ink/50">
                   {p.brand}
                 </p>
@@ -153,7 +177,7 @@ export function FeaturedMenu() {
               </div>
 
               {/* Metrics row */}
-              <div className="mx-5 mt-3 flex items-stretch divide-x-2 divide-ink overflow-hidden rounded-xl border-2 border-ink">
+              <div className="relative mx-5 mt-3 flex items-stretch divide-x-2 divide-ink overflow-hidden rounded-xl border-2 border-ink bg-cream">
                 {p.thc && (
                   <div className="flex-1 px-3 py-2">
                     <div className="text-[9px] font-bold uppercase tracking-widest text-ink/50">THC</div>
@@ -179,13 +203,18 @@ export function FeaturedMenu() {
               </div>
 
               {/* Price + CTA */}
-              <div className="mt-4 flex items-center justify-between gap-3 border-t-2 border-ink bg-cream p-5">
+              <div className="relative mt-4 flex items-center justify-between gap-3 border-t-2 border-ink bg-cream p-5">
                 <span className="font-display text-3xl text-ink">{p.price}</span>
                 <motion.button
-                  whileHover={{ y: -3, boxShadow: "0 14px 30px -10px rgba(10,10,20,0.45)" }}
+                  whileHover={{
+                    y: -3,
+                    backgroundColor: "rgb(253, 247, 232)",
+                    color: "rgb(10, 10, 20)",
+                    boxShadow: "0 14px 30px -10px rgba(10,10,20,0.45), inset 0 0 0 2px rgb(10,10,20)",
+                  }}
                   whileTap={{ scale: 0.97 }}
                   transition={{ type: "spring", stiffness: 320, damping: 20 }}
-                  className="rounded-full bg-ink px-5 py-2.5 text-[11px] font-black uppercase tracking-widest text-cream hover:bg-magenta"
+                  className="rounded-full bg-ink px-5 py-2.5 text-[11px] font-black uppercase tracking-widest text-cream"
                 >
                   Add to Cart
                 </motion.button>
