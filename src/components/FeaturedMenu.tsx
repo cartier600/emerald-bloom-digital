@@ -107,10 +107,10 @@ export function FeaturedMenu() {
               }}
               className="group relative flex flex-col overflow-hidden rounded-3xl border-2 border-ink bg-cream will-change-transform"
             >
-              {/* Category Badge */}
+              {/* Badge + Category */}
               <div className="flex items-start justify-between gap-2 p-4 pb-0">
                 <div className="rounded-full border-2 border-ink bg-ink px-3 py-1.5 text-[10px] font-black uppercase tracking-widest text-cream">
-                  {p.category}
+                  {p.badge}
                 </div>
                 <div className="rounded-full border-2 border-ink bg-cream px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-ink">
                   {p.type}
