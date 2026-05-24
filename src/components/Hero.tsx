@@ -58,8 +58,7 @@ export function Hero() {
 
           <div className="flex flex-col gap-6">
             <motion.p variants={riseSmall} className="text-balance max-w-xl text-base text-ink/80 md:text-lg">
-              Premium cannabis, local vibes. Serving the Rockaways with top-shelf,
-              locally sourced flower, premium concentrates, and curated edibles.
+              Premium cannabis, local vibes. Serving the Rockaways with top-shelf flower, premium concentrates, and curated edibles.
             </motion.p>
 
             <motion.div variants={riseSmall} className="flex flex-wrap gap-3">
