@@ -46,23 +46,20 @@ export function Hero() {
         >
           <div>
             <motion.p variants={riseSmall} className="text-sm font-bold uppercase tracking-[0.3em] text-ink/60">
-              ✺ Munchies Cannabis Co. · Est. 2024
+              THE ROCKAWAYS' FIRST LEGAL CANNABIS DISPENSARY
             </motion.p>
             <h1 className="font-display mt-6 text-[18vw] leading-[0.82] text-ink md:text-[14vw] lg:text-[10rem] xl:text-[12rem]">
-              <motion.span variants={rise} className="block">HIGH</motion.span>
+              <motion.span variants={rise} className="block">MUNCHIES</motion.span>
               <motion.span variants={rise} className="block">
-                <span className="inline-block bg-magenta px-4 text-cream">VIBES</span>
-              </motion.span>
-              <motion.span variants={rise} className="block">
-                ONLY<span className="text-magenta">.</span>
+                <span className="inline-block bg-magenta px-4 text-cream">NY</span>
               </motion.span>
             </h1>
           </div>
 
           <div className="flex flex-col gap-6">
             <motion.p variants={riseSmall} className="text-balance max-w-xl text-base text-ink/80 md:text-lg">
-              Beachside-grown, small-batch flower, hand-picked concentrates, and
-              edibles that actually slap. From our coast to your couch.
+              Premium cannabis, local vibes. Serving the Rockaways with top-shelf,
+              locally sourced flower, premium concentrates, and curated edibles.
             </motion.p>
 
             <motion.div variants={riseSmall} className="flex flex-wrap gap-3">

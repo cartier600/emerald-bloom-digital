@@ -9,14 +9,14 @@ import { Footer } from "@/components/Footer";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Hazewood Cannabis Co. — High Vibes Only" },
+      { title: "MUNCHIES NY — The Rockaways' First Legal Cannabis Dispensary" },
       {
         name: "description",
         content:
-          "Premium small-batch flower, live rosin, and edibles. Sativa, Indica, Hybrid — find your frequency at Hazewood.",
+          "Premium cannabis, local vibes. Serving the Rockaways with top-shelf flower, concentrates, and edibles. 21+ only.",
       },
-      { property: "og:title", content: "Hazewood Cannabis Co." },
-      { property: "og:description", content: "Premium cannabis. Bold flavors. 21+ only." },
+      { property: "og:title", content: "MUNCHIES NY" },
+      { property: "og:description", content: "The Rockaways' first legal cannabis dispensary. Premium flower, concentrates, and edibles." },
     ],
   }),
   component: Index,
