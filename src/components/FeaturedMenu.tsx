@@ -17,50 +17,50 @@ type Product = {
 
 const ITEMS: Product[] = [
   {
-    brand: "Back Home Cannabis Co.",
-    name: "Super Lemon Haze Flower",
-    size: "3.5g",
-    type: "Sativa",
-    thc: "24.29%",
-    terps: "1.55%",
-    price: "$35.00",
-    badge: "New Arrival",
-    badgeColor: "bg-acid text-ink",
-    swatch: "from-acid via-lime to-tangerine",
-    accent: "bg-acid",
-  },
-  {
-    brand: "Runtz",
-    name: "Original Bubblegum Runtz Flower",
+    brand: "Milkweed",
+    name: "Alien Space Candy Flower",
     size: "3.5g",
     type: "Indica-Hybrid",
-    thc: "26.90%",
-    price: "$60.00",
+    thc: "28.00%",
+    price: "$50.00",
     badge: "Staff Pick",
     badgeColor: "bg-cyan-pop text-ink",
     swatch: "from-cyan-pop via-magenta to-acid",
     accent: "bg-cyan-pop",
   },
   {
-    brand: "Old Pal",
-    name: "Blue Sherbet Pre-Ground Flower",
-    size: "14g",
-    type: "Indica",
-    thc: "29.00%",
-    price: "$60.00",
+    brand: "Pure Vibe",
+    name: "Durban Poison Smalls Flower",
+    size: "7g",
+    type: "Sativa",
+    thc: "23.96%",
+    price: "$40.00",
+    badge: "Uplifting",
+    badgeColor: "bg-acid text-ink",
+    swatch: "from-acid via-lime to-tangerine",
+    accent: "bg-acid",
+  },
+  {
+    brand: "Hudson Cannabis",
+    name: "Jack Herer Smalls Flower",
+    size: "7g",
+    type: "Sativa",
+    thc: "24.55%",
+    terps: "1.71%",
+    price: "$40.00",
     badge: "Top Seller",
     badgeColor: "bg-magenta text-cream",
     swatch: "from-magenta via-cyan-pop to-ink",
     accent: "bg-magenta",
   },
   {
-    brand: "REVERT",
-    name: "Maui Wowie Kief Infused Flower",
+    brand: "The Botanist",
+    name: "Urban Legend Smalls Flower",
     size: "14g",
-    type: "Sativa",
-    thc: "31.10%",
-    price: "$70.00",
-    badge: "High Potency",
+    type: "Indica",
+    thc: "22.64%",
+    price: "$100.00",
+    badge: "Bulk Tier",
     badgeColor: "bg-tangerine text-ink",
     swatch: "from-tangerine via-acid to-magenta",
     accent: "bg-tangerine",
@@ -96,8 +96,8 @@ export function FeaturedMenu() {
           </div>
         </div>
 
-        {/* 2 cols mobile, 3 cols tablet, 4 cols desktop */}
-        <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6 xl:grid-cols-4">
+        {/* 1 col mobile, 2 cols tablet, 4 cols desktop */}
+        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {ITEMS.map((p, i) => (
             <motion.div
               key={p.name}
