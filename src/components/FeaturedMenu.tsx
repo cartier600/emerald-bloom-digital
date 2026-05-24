@@ -1,69 +1,69 @@
 import { motion } from "framer-motion";
 import { EASE } from "@/lib/motion";
-import flower from "@/assets/product-flower.jpg";
-import edibles from "@/assets/product-edibles.jpg";
-import concentrates from "@/assets/product-concentrates.jpg";
 
-const ITEMS = [
+type Product = {
+  brand: string;
+  name: string;
+  size: string;
+  type: string;
+  thc: string;
+  terps?: string;
+  price: string;
+  badge: string;
+  badgeColor: string;
+  swatch: string;
+  accent: string;
+};
+
+const ITEMS: Product[] = [
   {
-    img: flower,
-    name: "Pink Runtz Pre-Rolls",
-    cat: "Flower",
-    badge: "NEW",
-    badgeColor: "bg-magenta text-cream",
-    price: "$42",
-    unit: "5-pack",
-    thc: "24% THC",
-  },
-  {
-    img: edibles,
-    name: "Rainbow Sour Gummies",
-    cat: "Edibles",
-    badge: "BEST SELLER",
-    badgeColor: "bg-cyan-pop text-ink",
-    price: "$28",
-    unit: "10ct · 100mg",
-    thc: "10mg ea",
-  },
-  {
-    img: concentrates,
-    name: "Tangie Live Rosin",
-    cat: "Concentrates",
-    badge: "LIMITED",
-    badgeColor: "bg-tangerine text-ink",
-    price: "$65",
-    unit: "1g jar",
-    thc: "82% THC",
-  },
-  {
-    img: flower,
-    name: "Wedding Cake Eighth",
-    cat: "Flower",
-    badge: "ON SALE",
+    brand: "Back Home Cannabis Co.",
+    name: "Super Lemon Haze Flower",
+    size: "3.5g",
+    type: "Sativa",
+    thc: "24.29%",
+    terps: "1.55%",
+    price: "$35.00",
+    badge: "Popular Sativa",
     badgeColor: "bg-acid text-ink",
-    price: "$38",
-    unit: "3.5g",
-    thc: "26% THC",
+    swatch: "from-acid via-lime to-tangerine",
+    accent: "bg-acid",
   },
   {
-    img: edibles,
-    name: "Dark Chocolate Bites",
-    cat: "Edibles",
-    badge: "VEGAN",
-    badgeColor: "bg-lime text-ink",
-    price: "$32",
-    unit: "12ct · 120mg",
-    thc: "10mg ea",
-  },
-  {
-    img: concentrates,
-    name: "GMO Badder",
-    cat: "Concentrates",
-    badge: "STAFF PICK",
+    brand: "Old Pal",
+    name: "Blue Sherbet Pre-Ground Flower",
+    size: "14g",
+    type: "Indica",
+    thc: "29.00%",
+    price: "$60.00",
+    badge: "Top Seller",
     badgeColor: "bg-magenta text-cream",
-    price: "$58",
-    unit: "1g jar",
-    thc: "78% THC",
+    swatch: "from-magenta via-cyan-pop to-ink",
+    accent: "bg-magenta",
+  },
+  {
+    brand: "Runtz",
+    name: "Original Bubblegum Runtz Flower",
+    size: "3.5g",
+    type: "Indica-Hybrid",
+    thc: "26.90%",
+    price: "$60.00",
+    badge: "Staff Pick",
+    badgeColor: "bg-cyan-pop text-ink",
+    swatch: "from-cyan-pop via-magenta to-acid",
+    accent: "bg-cyan-pop",
+  },
+  {
+    brand: "Revert",
+    name: "Maui Wowie Kief Infused Flower",
+    size: "14g",
+    type: "Sativa",
+    thc: "31.10%",
+    price: "$70.00",
+    badge: "High Potency",
+    badgeColor: "bg-tangerine text-ink",
+    swatch: "from-tangerine via-acid to-magenta",
+    accent: "bg-tangerine",
   },
 ];
 
@@ -110,38 +110,74 @@ export function FeaturedMenu() {
                 boxShadow: "0 30px 60px -20px rgba(10,10,20,0.35), 0 12px 24px -12px rgba(255,61,139,0.25)",
                 transition: { type: "spring", stiffness: 220, damping: 18 },
               }}
-              className="group relative overflow-hidden rounded-3xl border-2 border-ink bg-cream will-change-transform"
+              className="group relative flex flex-col overflow-hidden rounded-3xl border-2 border-ink bg-cream will-change-transform"
             >
-              <div className="relative aspect-square overflow-hidden bg-ink/5">
-                <img
-                  src={p.img}
-                  alt={p.name}
-                  width={1024}
-                  height={1024}
-                  loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className={`absolute left-4 top-4 rounded-full px-3 py-1.5 text-[10px] font-black uppercase tracking-widest ${p.badgeColor}`}>
+              {/* Badge */}
+              <div className="flex items-start justify-between gap-2 p-4 pb-0">
+                <div className={`rounded-full px-3 py-1.5 text-[10px] font-black uppercase tracking-widest ${p.badgeColor}`}>
                   {p.badge}
                 </div>
-                <div className="absolute right-4 top-4 rounded-full border-2 border-ink bg-cream px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-ink">
-                  {p.thc}
+                <div className="rounded-full border-2 border-ink bg-cream px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-ink">
+                  {p.type}
                 </div>
               </div>
-              <div className="flex items-end justify-between gap-4 border-t-2 border-ink p-5">
-                <div>
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-ink/50">
-                    {p.cat}
-                  </p>
-                  <h3 className="font-display mt-1 text-2xl text-ink">{p.name}</h3>
-                  <p className="mt-1 text-xs text-ink/60">{p.unit}</p>
+
+              {/* Stylized product shot placeholder */}
+              <div className={`relative mx-4 mt-3 aspect-square overflow-hidden rounded-2xl border-2 border-ink bg-gradient-to-br ${p.swatch}`}>
+                <div className="absolute inset-0 grid place-items-center">
+                  <div className="text-center">
+                    <div className="font-display text-[clamp(2.5rem,8vw,5rem)] leading-[0.85] text-ink/90">
+                      {p.name.split(" ")[0].toUpperCase()}
+                    </div>
+                    <div className="mt-1 text-[10px] font-black uppercase tracking-[0.3em] text-ink/70">
+                      {p.size}
+                    </div>
+                  </div>
                 </div>
-                <div className="flex flex-col items-end">
-                  <span className="font-display text-3xl text-ink">{p.price}</span>
-                  <button className="mt-2 grid h-10 w-10 place-items-center rounded-full bg-ink text-cream transition-transform hover:scale-110 hover:bg-magenta">
-                    +
-                  </button>
+                <div className="absolute bottom-2 right-2 rounded-full border-2 border-ink bg-cream px-2.5 py-1 text-[10px] font-black uppercase tracking-widest text-ink">
+                  {p.size}
                 </div>
+              </div>
+
+              {/* Brand + Title */}
+              <div className="px-5 pt-4">
+                <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-ink/50">
+                  {p.brand}
+                </p>
+                <h3 className="font-display mt-1 text-xl leading-tight text-ink md:text-2xl">
+                  {p.name}
+                </h3>
+              </div>
+
+              {/* Metrics row */}
+              <div className="mx-5 mt-3 flex items-stretch divide-x-2 divide-ink overflow-hidden rounded-xl border-2 border-ink">
+                <div className="flex-1 px-3 py-2">
+                  <div className="text-[9px] font-bold uppercase tracking-widest text-ink/50">THC</div>
+                  <div className="font-display text-base text-ink">{p.thc}</div>
+                </div>
+                {p.terps && (
+                  <div className="flex-1 px-3 py-2">
+                    <div className="text-[9px] font-bold uppercase tracking-widest text-ink/50">Terps</div>
+                    <div className="font-display text-base text-ink">{p.terps}</div>
+                  </div>
+                )}
+                <div className={`flex-1 px-3 py-2 ${p.accent}`}>
+                  <div className="text-[9px] font-bold uppercase tracking-widest text-ink/70">Type</div>
+                  <div className="font-display text-base text-ink">{p.type}</div>
+                </div>
+              </div>
+
+              {/* Price + CTA */}
+              <div className="mt-4 flex items-center justify-between gap-3 border-t-2 border-ink bg-cream p-5">
+                <span className="font-display text-3xl text-ink">{p.price}</span>
+                <motion.button
+                  whileHover={{ y: -3, boxShadow: "0 14px 30px -10px rgba(10,10,20,0.45)" }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ type: "spring", stiffness: 320, damping: 20 }}
+                  className="rounded-full bg-ink px-5 py-2.5 text-[11px] font-black uppercase tracking-widest text-cream hover:bg-magenta"
+                >
+                  Add to Cart
+                </motion.button>
               </div>
             </motion.div>
           ))}
