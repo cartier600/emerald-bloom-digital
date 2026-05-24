@@ -38,7 +38,7 @@ export function AgeGate() {
             <div className="absolute -bottom-12 -left-12 h-48 w-48 rounded-full bg-acid" />
             <div className="relative">
               <p className="font-sans text-xs uppercase tracking-[0.3em] text-ink/60">
-                Hazewood Cannabis Co.
+                Munchies Cannabis Co.
               </p>
               <h2 className="font-display mt-4 text-6xl text-ink md:text-8xl">
                 ARE YOU
