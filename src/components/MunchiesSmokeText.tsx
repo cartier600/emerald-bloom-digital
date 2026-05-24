@@ -1,13 +1,11 @@
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 import { EASE } from "@/lib/motion";
+import logoScript from "@/assets/logo-munchies-script.png";
 
-// "MUNCHIES" with the I intentionally missing. A cartoon smoke-bomb
-// puffs up in hot magenta, then scatters in chunky lobes — revealing
-// the bold letters underneath. A clean circular bite-mark clip is
-// subtracted from the bottom-left leg of the first M.
-const LETTERS = ["M", "U", "N", "C", "H", "E", "S"] as const;
-
+// Cartoon smoke-bomb in hot magenta puffs up and scatters, revealing the
+// official "Munchies Dispensary New York" script logo underneath. A clean
+// circular bite-mark clip is subtracted from the bottom-left corner.
 export function MunchiesSmokeText() {
   const puffs = useMemo(
     () =>
@@ -27,7 +25,7 @@ export function MunchiesSmokeText() {
   );
 
   const clipId = useMemo(
-    () => `m-bite-${Math.random().toString(36).slice(2, 9)}`,
+    () => `logo-bite-${Math.random().toString(36).slice(2, 9)}`,
     [],
   );
 
@@ -38,7 +36,7 @@ export function MunchiesSmokeText() {
   }, []);
 
   return (
-    <div className="relative inline-block">
+    <div className="relative inline-block w-full">
       {/* Cartoon smoke-bomb cloud + scattering lobes */}
       <div className="pointer-events-none absolute inset-0 z-10 grid place-items-center">
         <motion.span
@@ -75,59 +73,39 @@ export function MunchiesSmokeText() {
         ))}
       </div>
 
-      {/* Letters pop in underneath the smoke */}
-      <span className="relative inline-flex items-baseline">
-        {LETTERS.map((ch, i) => {
-          const isFirstM = i === 0;
-          return (
-            <motion.span
-              key={i}
-              initial={{ opacity: 0, scale: 0.4, y: 30 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{
-                type: "spring",
-                stiffness: 420,
-                damping: 22,
-                delay: 1.15 + i * 0.05,
-              }}
-              className="relative inline-block"
-              style={
-                isFirstM && bitten ? { clipPath: `url(#${clipId})` } : undefined
-              }
-            >
-              {ch}
-              {isFirstM && (
-                <>
-                  <svg
-                    aria-hidden
-                    width="0"
-                    height="0"
-                    className="absolute"
-                    style={{ position: "absolute" }}
-                  >
-                    <defs>
-                      <clipPath id={clipId} clipPathUnits="objectBoundingBox">
-                        <path
-                          d="M0,0 H1 V1 H0 Z M0.18,0.92 m-0.18,0 a0.18,0.18 0 1,0 0.36,0 a0.18,0.18 0 1,0 -0.36,0 Z"
-                          clipRule="evenodd"
-                          fillRule="evenodd"
-                        />
-                      </clipPath>
-                    </defs>
-                  </svg>
-                  <motion.span
-                    aria-hidden
-                    initial={{ scale: 0, opacity: 0 }}
-                    animate={{ scale: [0, 1.6, 2.2], opacity: [0, 0.9, 0] }}
-                    transition={{ delay: 1.7, duration: 0.6, ease: EASE }}
-                    className="pointer-events-none absolute bottom-[-4%] left-[-4%] block aspect-square w-[34%] rounded-full bg-acid mix-blend-screen"
-                  />
-                </>
-              )}
-            </motion.span>
-          );
-        })}
-      </span>
+      {/* Official script logo revealed under the smoke */}
+      <svg aria-hidden width="0" height="0" className="absolute">
+        <defs>
+          <clipPath id={clipId} clipPathUnits="objectBoundingBox">
+            <path
+              d="M0,0 H1 V1 H0 Z M0.14,0.78 m-0.13,0 a0.13,0.13 0 1,0 0.26,0 a0.13,0.13 0 1,0 -0.26,0 Z"
+              clipRule="evenodd"
+              fillRule="evenodd"
+            />
+          </clipPath>
+        </defs>
+      </svg>
+      <motion.span
+        className="relative block"
+        initial={{ opacity: 0, scale: 0.6, y: 24 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ type: "spring", stiffness: 320, damping: 24, delay: 1.15 }}
+        style={bitten ? { clipPath: `url(#${clipId})` } : undefined}
+      >
+        <img
+          src={logoScript}
+          alt="Munchies Dispensary New York"
+          className="block h-auto w-full max-w-[900px] select-none"
+          draggable={false}
+        />
+      </motion.span>
+      <motion.span
+        aria-hidden
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: [0, 1.6, 2.4], opacity: [0, 0.9, 0] }}
+        transition={{ delay: 1.7, duration: 0.6, ease: EASE }}
+        className="pointer-events-none absolute bottom-[6%] left-[6%] block aspect-square w-[18%] rounded-full bg-acid mix-blend-screen"
+      />
     </div>
   );
 }
