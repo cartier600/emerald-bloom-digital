@@ -9,8 +9,9 @@ export function Footer() {
   const checkZip = (e: React.FormEvent) => {
     e.preventDefault();
     if (/^\d{5}$/.test(zip)) {
-      // Mock: zips starting with 9 deliver.
-      setStatus(zip.startsWith("9") ? "ok" : "no");
+      // Covered zips for Rockaways area
+      const covered = ["11691", "11692", "11693", "11694", "11697", "11414", "11416"];
+      setStatus(covered.includes(zip) ? "ok" : "no");
     }
   };
 
@@ -37,44 +38,38 @@ export function Footer() {
           {/* LEFT: Store info / hours */}
           <div className="flex flex-col gap-10">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.3em] text-acid">
-                ✺ Visit the shop
-              </p>
-              <h3 className="font-display mt-3 text-5xl text-cream md:text-7xl">
-                LET'S
+              <h3 className="font-display text-6xl text-cream md:text-8xl lg:text-9xl">
+                VISIT
                 <br />
-                LINK UP<span className="text-acid">.</span>
+                THE SHOP
               </h3>
             </div>
 
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
               <div>
                 <h4 className="font-display text-lg text-acid">LOCATION</h4>
-                <p className="mt-2 text-cream/80">
-                  1420 Highland Ave
+                <p className="mt-2 text-lg font-medium text-cream/90">
+                  8701 Rockaway Beach Blvd
                   <br />
-                  Portland, OR 97214
+                  Far Rockaway, NY 11693
                 </p>
               </div>
               <div>
                 <h4 className="font-display text-lg text-acid">CONTACT</h4>
-                <p className="mt-2 text-cream/80">
-                  (503) 555-4200
-                  <br />
-                  hi@munchies.co
+                <p className="mt-2 text-lg font-medium text-cream/90">
+                  (347) 503-7099
                 </p>
               </div>
               <div className="sm:col-span-2">
                 <h4 className="font-display text-lg text-acid">HOURS</h4>
-                <ul className="mt-3 divide-y divide-cream/15 text-cream/80">
+                <ul className="mt-3 divide-y divide-cream/15 text-cream/90">
                   {[
-                    ["Mon – Thu", "10AM – 10PM"],
-                    ["Fri – Sat", "10AM – 11PM"],
-                    ["Sunday", "11AM – 9PM"],
+                    ["Mon – Sat", "10:00 AM – 9:00 PM"],
+                    ["Sun", "10:45 AM – 8:00 PM"],
                   ].map(([d, h]) => (
-                    <li key={d} className="flex items-center justify-between py-2">
-                      <span>{d}</span>
-                      <span className="font-display tracking-wider">{h}</span>
+                    <li key={d} className="flex items-center justify-between py-3">
+                      <span className="text-lg font-medium">{d}</span>
+                      <span className="font-display text-lg tracking-wider">{h}</span>
                     </li>
                   ))}
                 </ul>
@@ -82,20 +77,16 @@ export function Footer() {
             </div>
           </div>
 
-          {/* RIGHT: Zip checker */}
+          {/* RIGHT: Delivery radius */}
           <div className="flex flex-col gap-8">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.3em] text-acid">
-                ✺ Delivery check
-              </p>
-              <h3 className="font-display mt-3 text-5xl text-cream md:text-7xl">
-                DO WE
+              <h3 className="font-display text-6xl text-cream md:text-8xl lg:text-9xl">
+                ROCKAWAY
                 <br />
-                <span className="text-acid">DELIVER?</span>
+                <span className="text-acid">DELIVERY</span>
               </h3>
-              <p className="mt-4 max-w-md text-cream/70">
-                Drop your zip and we'll tell you if we run that way. Same-day
-                delivery in most of the metro, 7 days a week.
+              <p className="mt-4 max-w-md text-lg text-cream/70">
+                Bringing premium cannabis straight to your door across the Rockaways and beyond.
               </p>
             </div>
 
@@ -141,11 +132,19 @@ export function Footer() {
                 </p>
                 <p className="mt-1 text-sm opacity-80">
                   {status === "ok"
-                    ? "Same-day window: 30–60 minutes."
+                    ? "Same-day delivery available. Order before 8PM."
                     : "Drop your email and we'll ping you when we expand."}
                 </p>
               </motion.div>
             )}
+
+            <div className="mt-2 flex flex-wrap gap-3">
+              {["Far Rockaway", "Rockaway Park", "Belle Harbor", "Breezy Point", "Arverne", "Broad Channel", "Howard Beach"].map((area) => (
+                <span key={area} className="rounded-full border border-cream/20 bg-cream/5 px-4 py-2 text-sm font-medium text-cream/80">
+                  {area}
+                </span>
+              ))}
+            </div>
 
             <div className="mt-2 flex flex-wrap gap-4 text-sm text-cream/70">
               <a href="#" className="hover:text-acid">Instagram</a>
