@@ -11,6 +11,7 @@ type Product = {
   dosage?: string;
   terps?: string;
   price: string;
+  badge: string;
   accent: string;
 };
 
@@ -23,16 +24,18 @@ const ITEMS: Product[] = [
     type: "Indica-Hybrid",
     thc: "28.00%",
     price: "$50.00",
+    badge: "Staff Pick",
     accent: "bg-cyan-pop",
   },
   {
     category: "Edibles",
-    brand: "Camino Sours",
-    name: "Tropical Burst \"Energy\" Gummies",
-    size: "10pk",
-    type: "Sativa",
+    brand: "Munchies Brand",
+    name: "Strawberry Bliss Gummies",
+    size: "10ct",
+    type: "Hybrid",
     dosage: "100mg",
-    price: "$30.00",
+    price: "$28.00",
+    badge: "Local Favorite",
     accent: "bg-acid",
   },
   {
@@ -43,16 +46,18 @@ const ITEMS: Product[] = [
     type: "Hybrid",
     thc: "72.03%",
     price: "$60.00",
+    badge: "New Drop",
     accent: "bg-magenta",
   },
   {
     category: "Pre-Rolls",
-    brand: "Munchies Brand",
-    name: "French Toast Pre-Roll",
-    size: "1g",
-    type: "Hybrid",
-    thc: "23.37%",
-    price: "$15.00",
+    brand: "Ruby Farms",
+    name: "Blueberry \"DJ Cut\" Hash Infused Pre-Rolls",
+    size: "10pk / 5g",
+    type: "Indica",
+    thc: "40.43%",
+    price: "$75.00",
+    badge: "Top Shelf Potency",
     accent: "bg-tangerine",
   },
 ];
@@ -102,10 +107,10 @@ export function FeaturedMenu() {
               }}
               className="group relative flex flex-col overflow-hidden rounded-3xl border-2 border-ink bg-cream will-change-transform"
             >
-              {/* Category Badge */}
+              {/* Badge + Category */}
               <div className="flex items-start justify-between gap-2 p-4 pb-0">
                 <div className="rounded-full border-2 border-ink bg-ink px-3 py-1.5 text-[10px] font-black uppercase tracking-widest text-cream">
-                  {p.category}
+                  {p.badge}
                 </div>
                 <div className="rounded-full border-2 border-ink bg-cream px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-ink">
                   {p.type}
