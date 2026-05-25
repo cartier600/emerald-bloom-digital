@@ -2,9 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { AgeGate } from "@/components/AgeGate";
 import { Nav } from "@/components/Nav";
 import { IntroPreloader } from "@/components/IntroPreloader";
+import { Hero } from "@/components/Hero";
 import { Strains } from "@/components/Strains";
 import { FeaturedMenu } from "@/components/FeaturedMenu";
-import { WeedToMenuTransition } from "@/components/WeedToMenuTransition";
 import { Footer } from "@/components/Footer";
 
 export const Route = createFileRoute("/")({
@@ -29,7 +29,7 @@ function Index() {
       <IntroPreloader />
       <AgeGate />
       <Nav />
-      <WeedToMenuTransition />
+      <Hero />
       <FeaturedMenu />
       <Strains />
       <Footer />
