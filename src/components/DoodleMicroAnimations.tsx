@@ -113,8 +113,9 @@ export function DoodleMicroAnimations({ className }: Props) {
       {/* Floating "thought" dots */}
       {[
         { cx: 1290, cy: 195, r: 3, delay: 0 },
-        { cx: 1305: 0, cy: 0, r: 0, delay: 0 },
-      ].slice(0, 1).map((d, i) => (
+        { cx: 1278, cy: 178, r: 2.2, delay: 0.4 },
+        { cx: 1266, cy: 162, r: 1.6, delay: 0.8 },
+      ].map((d, i) => (
         <motion.circle
           key={`t-${i}`}
           cx={d.cx}
