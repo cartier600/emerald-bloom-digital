@@ -72,6 +72,10 @@
   --color-forest: var(--forest);
   --color-forest-deep: var(--forest-deep);
   --color-athletic: var(--athletic);
+  --color-mint: var(--mint);
+  --color-indigo-deep: var(--indigo-deep);
+  --color-ultraviolet: var(--ultraviolet);
+  --color-neon-yellow: var(--neon-yellow);
   --font-display: "Archivo Black", system-ui, sans-serif;
   --font-sans: "Space Grotesk", system-ui, sans-serif;
 }
