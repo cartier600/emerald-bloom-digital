@@ -31,8 +31,11 @@ function Index() {
       <AgeGate />
       <Nav />
       <Hero />
+      <div className="h-16 md:h-24 bg-cream" aria-hidden />
       <BestSellers />
+      <div className="h-16 md:h-24 bg-cream" aria-hidden />
       <FeaturedMenu />
+      <div className="h-16 md:h-24 bg-cream" aria-hidden />
       <Strains />
       <Footer />
     </main>

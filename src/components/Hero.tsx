@@ -17,7 +17,7 @@ const riseSmall = {
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-forest pt-36 pb-28 text-cream">
+    <section className="relative min-h-screen overflow-hidden bg-forest pt-36 pb-32 text-cream">
       {/* Doodle background + synchronized micro-animations */}
       <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
         <div className="relative h-full w-full">
@@ -116,19 +116,19 @@ export function Hero() {
         </motion.div>
       </div>
 
-      {/* Floating corner widget — hidden on mobile */}
+      {/* Floating corner widget — desktop only, stacks below on mobile */}
       <motion.div
         initial={{ opacity: 0, scale: 0.85, y: 30 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 1, ease: EASE, delay: 0.5 }}
-        className="pointer-events-none absolute bottom-8 right-8 z-20 hidden w-72 lg:block"
+        className="pointer-events-none absolute bottom-10 right-10 z-20 hidden w-56 lg:block"
       >
         <motion.div
           animate={{ y: [0, -10, 0] }}
           transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-          className="pointer-events-auto relative rounded-[2rem] border-2 border-ink bg-athletic p-4 shadow-2xl"
+          className="pointer-events-auto relative rounded-[1.75rem] border-2 border-ink bg-athletic p-3 shadow-2xl"
         >
-          <div className="overflow-hidden rounded-[1.5rem] border-2 border-ink bg-cream">
+          <div className="overflow-hidden rounded-[1.25rem] border-2 border-ink bg-cream">
             <img
               src={hybrid}
               alt="Featured strain"
@@ -137,16 +137,32 @@ export function Hero() {
               className="aspect-square w-full object-cover"
             />
           </div>
-          <div className="font-display absolute -left-3 -top-3 rounded-full border-2 border-ink bg-magenta px-3 py-1.5 text-[10px] uppercase tracking-widest text-cream">
+          <div className="font-display absolute -left-2 -top-2 rounded-full border-2 border-ink bg-magenta px-2.5 py-1 text-[9px] uppercase tracking-widest text-cream">
             ✺ Fresh Drop
           </div>
-          <div className="mt-3 px-1 pb-1">
-            <p className="text-[10px] font-bold uppercase tracking-widest text-cream/70">Today's pick</p>
-            <p className="font-display text-lg text-cream">Wedding Cake</p>
-            <p className="text-xs text-cream/70">26% THC · $38/8th</p>
+          <div className="mt-2.5 px-1 pb-0.5">
+            <p className="text-[9px] font-bold uppercase tracking-widest text-cream/70">Today's pick</p>
+            <p className="font-display text-base text-cream leading-tight">Wedding Cake</p>
+            <p className="text-[11px] text-cream/70">26% THC · $38/8th</p>
           </div>
         </motion.div>
       </motion.div>
+
+      {/* Mobile-only stacked Fresh Drop card */}
+      <div className="relative z-10 mt-16 px-6 lg:hidden">
+        <div className="mx-auto max-w-sm rounded-[1.75rem] border-2 border-ink bg-athletic p-3 shadow-2xl">
+          <div className="overflow-hidden rounded-[1.25rem] border-2 border-ink bg-cream">
+            <img src={hybrid} alt="Featured strain" width={512} height={512} className="aspect-square w-full object-cover" />
+          </div>
+          <div className="mt-3 px-1 pb-1 flex items-center justify-between">
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-widest text-cream/70">Today's pick</p>
+              <p className="font-display text-lg text-cream">Wedding Cake</p>
+            </div>
+            <p className="text-xs text-cream/70">26% THC</p>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
