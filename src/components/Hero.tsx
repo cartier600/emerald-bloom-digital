@@ -20,11 +20,11 @@ export function Hero() {
   return (
     <section className="relative min-h-screen overflow-hidden bg-forest pt-32 pb-16 text-cream">
       {/* Marquee top */}
-      <div className="absolute left-0 right-0 top-24 overflow-hidden border-y-2 border-ink bg-athletic py-3">
+      <div className="absolute left-0 right-0 top-24 overflow-hidden border-y-2 border-ink bg-neon-yellow py-3">
         <div className="marquee-track flex whitespace-nowrap">
           {Array.from({ length: 2 }).map((_, i) => (
             <div key={i} className="flex shrink-0 items-center gap-8 pr-8">
-              {["FRESH DROP", "LIVE ROSIN", "21+ ONLY", "FREE DELIVERY", "PREMIUM NY BRANDS", "NEW STRAINS"].map(
+              {["ROCKAWAY BEACH VIBES", "21+ ONLY", "FREE LOCAL DELIVERY", "PREMIUM NY BRANDS", "FRESH FLOWER"].map(
                 (t) => (
                   <span key={t} className="font-display flex items-center gap-8 text-lg text-ink">
                     {t} <span>✺</span>
