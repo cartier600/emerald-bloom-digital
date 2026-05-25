@@ -54,7 +54,6 @@ export function WeedToMenuTransition() {
         <motion.div
           style={{ opacity: heroOpacity, y: heroY, scale: heroScale }}
           className="pointer-events-none absolute inset-0 z-30 mx-auto flex max-w-[1400px] flex-col items-center justify-center px-6 text-center"
-          style-shadow=""
         >
           <p className="mb-6 text-xs font-bold uppercase tracking-[0.4em] text-cream [text-shadow:0_2px_8px_rgba(0,0,0,0.9)]">
             ✺ The Rockaways' First Legal Dispensary
