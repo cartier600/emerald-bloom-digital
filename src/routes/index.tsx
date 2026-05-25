@@ -4,6 +4,7 @@ import { Nav } from "@/components/Nav";
 import { IntroPreloader } from "@/components/IntroPreloader";
 import { Hero } from "@/components/Hero";
 import { BestSellers } from "@/components/BestSellers";
+import { StaffPicks } from "@/components/StaffPicks";
 import { Strains } from "@/components/Strains";
 import { FeaturedMenu } from "@/components/FeaturedMenu";
 import { Footer } from "@/components/Footer";
@@ -33,6 +34,8 @@ function Index() {
       <Hero />
       <div className="h-16 md:h-24 bg-cream" aria-hidden />
       <BestSellers />
+      <div className="h-16 md:h-24 bg-cream" aria-hidden />
+      <StaffPicks />
       <div className="h-16 md:h-24 bg-cream" aria-hidden />
       <FeaturedMenu />
       <div className="h-16 md:h-24 bg-cream" aria-hidden />
