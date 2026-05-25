@@ -90,7 +90,7 @@ export function FeaturedMenu() {
     return "#5cffb0"; // hybrid + fallback
   };
   return (
-    <section id="menu" className="bg-cream px-6 py-24 md:px-10 md:py-32">
+    <section id="menu" className="bg-cream px-6 py-28 md:px-10 md:py-36">
       <div className="mx-auto max-w-[1600px]">
         <div className="flex flex-wrap items-end justify-between gap-8 border-b-2 border-ink pb-10">
           <div>

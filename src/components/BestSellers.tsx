@@ -140,7 +140,7 @@ export function BestSellers() {
   return (
     <section
       id="best-sellers"
-      className="relative overflow-hidden bg-forest py-24 md:py-32 text-cream"
+      className="relative overflow-hidden bg-forest py-32 md:py-40 text-cream"
     >
       {/* BACKGROUND LAYER — doodle art continuing under the section */}
       <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
