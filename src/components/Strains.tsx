@@ -14,10 +14,10 @@ const STRAINS = [
     copy: "Cerebral, uplifting, creative. The morning espresso of cannabis.",
     image: sativa,
     feel: ["Energetic", "Focus", "Creative"],
-    bg: "bg-acid",
+    bg: "bg-neon-yellow",
     text: "text-ink",
     border: "border-ink",
-    accent: "bg-magenta text-cream",
+    accent: "bg-ink text-neon-yellow",
   },
   {
     id: "hybrid",
@@ -27,10 +27,10 @@ const STRAINS = [
     copy: "Balanced, versatile, dialed. The sweet spot between sky and earth.",
     image: hybrid,
     feel: ["Balance", "Mood", "Flow"],
-    bg: "bg-lime",
+    bg: "bg-mint",
     text: "text-ink",
     border: "border-ink",
-    accent: "bg-violet-deep text-cream",
+    accent: "bg-ink text-lime",
   },
   {
     id: "indica",
@@ -40,10 +40,10 @@ const STRAINS = [
     copy: "Heavy, deep, sedating. For couch-locks and dream chasers.",
     image: indica,
     feel: ["Relax", "Sleep", "Body"],
-    bg: "bg-violet-deep",
+    bg: "bg-indigo-deep",
     text: "text-cream",
     border: "border-cream",
-    accent: "bg-acid text-ink",
+    accent: "bg-ultraviolet text-cream",
   },
 ];
 

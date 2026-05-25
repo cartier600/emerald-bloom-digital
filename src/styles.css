@@ -72,6 +72,10 @@
   --color-forest: var(--forest);
   --color-forest-deep: var(--forest-deep);
   --color-athletic: var(--athletic);
+  --color-mint: var(--mint);
+  --color-indigo-deep: var(--indigo-deep);
+  --color-ultraviolet: var(--ultraviolet);
+  --color-neon-yellow: var(--neon-yellow);
   --font-display: "Archivo Black", system-ui, sans-serif;
   --font-sans: "Space Grotesk", system-ui, sans-serif;
 }
@@ -112,6 +116,12 @@
   --forest: oklch(0.38 0.10 155);         /* rich forest green */
   --forest-deep: oklch(0.30 0.09 155);    /* deeper forest */
   --athletic: oklch(0.86 0.17 95);        /* warm athletic yellow */
+
+  /* World accents */
+  --mint: oklch(0.88 0.18 165);           /* vibrant mint */
+  --indigo-deep: oklch(0.28 0.18 280);    /* midnight indigo */
+  --ultraviolet: oklch(0.55 0.30 295);    /* ultraviolet glow */
+  --neon-yellow: oklch(0.94 0.24 105);    /* loud neon ticker yellow */
 
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
