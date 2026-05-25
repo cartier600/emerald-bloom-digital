@@ -240,7 +240,8 @@ export function FeaturedMenu() {
                     y: -3,
                     backgroundColor: "rgb(253, 247, 232)",
                     color: "rgb(10, 10, 20)",
-                    boxShadow: "0 14px 30px -10px rgba(10,10,20,0.45), inset 0 0 0 2px rgb(10,10,20)",
+                    boxShadow:
+                      "0 0 0 2px rgb(10,10,20), 0 0 18px 2px rgba(255,228,40,0.85), 0 14px 30px -10px rgba(10,10,20,0.45)",
                   }}
                   whileTap={{ scale: 0.97 }}
                   transition={{ type: "spring", stiffness: 320, damping: 20 }}
