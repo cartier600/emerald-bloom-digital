@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
-import gummies from "@/assets/product-gummies.jpg";
-import flower from "@/assets/product-flower.jpg";
+import camino from "@/assets/product-camino.jpg";
+import find from "@/assets/product-find.jpg";
+import wyld from "@/assets/product-wyld.jpg";
+import runtz from "@/assets/product-runtz.jpg";
 import { EASE } from "@/lib/motion";
 
 type Product = {
@@ -25,7 +27,7 @@ const PRODUCTS: Product[] = [
     badgeText: "text-cream",
     thc: "100mg THC",
     price: "$28",
-    image: gummies,
+    image: wyld,
   },
   {
     name: "Camino Midnight Blueberry",
@@ -36,7 +38,7 @@ const PRODUCTS: Product[] = [
     badgeText: "text-cream",
     thc: "300mg THC",
     price: "$32",
-    image: gummies,
+    image: camino,
   },
   {
     name: "Find. Bottomless Mints",
@@ -47,7 +49,7 @@ const PRODUCTS: Product[] = [
     badgeText: "text-ink",
     thc: "22% THC",
     price: "$45/8th",
-    image: flower,
+    image: find,
   },
   {
     name: "Runtz Amaretto Di Lemon",
@@ -58,7 +60,7 @@ const PRODUCTS: Product[] = [
     badgeText: "text-ink",
     thc: "28% THC",
     price: "$60/8th",
-    image: flower,
+    image: runtz,
   },
 ];
 
@@ -100,15 +102,15 @@ export function BestSellers() {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.7, ease: EASE, delay: i * 0.08 }}
               whileHover={{ y: -6 }}
-              className="group flex flex-col rounded-[1.75rem] border-2 border-ink bg-[#FDFBF7] p-4 text-ink shadow-[8px_8px_0_0_rgba(0,0,0,1)] transition-shadow hover:shadow-[12px_12px_0_0_rgba(0,0,0,1)]"
+              className="group flex flex-col overflow-hidden rounded-[1.75rem] border-2 border-ink bg-[#FDFBF7] text-ink shadow-[8px_8px_0_0_rgba(0,0,0,1)] transition-shadow hover:shadow-[12px_12px_0_0_rgba(0,0,0,1)]"
             >
               {/* Image */}
-              <div className="relative overflow-hidden rounded-[1.25rem] border-2 border-ink bg-cream">
+              <div className="relative overflow-hidden border-b-2 border-ink">
                 <img
                   src={p.image}
                   alt={p.name}
                   loading="lazy"
-                  className="aspect-square w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="h-56 w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <span
                   className={`absolute left-3 top-3 rounded-full border-2 border-ink ${p.badgeBg} ${p.badgeText} px-3 py-1 text-[10px] font-bold uppercase tracking-widest`}
@@ -118,7 +120,7 @@ export function BestSellers() {
               </div>
 
               {/* Body */}
-              <div className="mt-4 flex flex-1 flex-col">
+              <div className="flex flex-1 flex-col p-5">
                 <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-ink/60">
                   {p.category}
                 </p>
