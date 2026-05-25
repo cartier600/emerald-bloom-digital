@@ -17,7 +17,7 @@ const riseSmall = {
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-forest pt-32 pb-16 text-cream">
+    <section className="relative min-h-screen overflow-hidden bg-forest pt-36 pb-28 text-cream">
       {/* Doodle background + synchronized micro-animations */}
       <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
         <div className="relative h-full w-full">
@@ -59,7 +59,7 @@ export function Hero() {
       </div>
 
       {/* Split 60/40 on desktop, stacked on mobile */}
-      <div className="relative z-10 mx-auto mt-16 grid max-w-[1600px] grid-cols-1 gap-10 px-6 md:px-10 lg:grid-cols-10">
+      <div className="relative z-10 mx-auto mt-20 grid max-w-[1600px] grid-cols-1 gap-12 px-6 md:px-10 lg:grid-cols-10">
         {/* LEFT 60% — headlines, sub copy, CTAs */}
         <motion.div
           className="flex flex-col justify-between gap-10 lg:col-span-6"
@@ -101,7 +101,7 @@ export function Hero() {
               </motion.a>
             </motion.div>
 
-            <motion.div variants={riseSmall} className="grid max-w-xl grid-cols-3 gap-4 pt-4">
+            <motion.div variants={riseSmall} className="grid max-w-xl grid-cols-3 gap-4 pt-10">
               {[
                 { v: "47+", l: "Strains" },
                 { v: "12k", l: "Happy" },

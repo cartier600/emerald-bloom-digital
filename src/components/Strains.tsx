@@ -295,7 +295,7 @@ export function Strains() {
   return (
     <section ref={sectionRef} id="strains" className="relative w-full overflow-hidden">
       {/* Section header */}
-      <div className="bg-cream px-6 pt-24 pb-10 md:px-10">
+      <div className="bg-cream px-6 pt-32 pb-16 md:px-10">
         <div className="mx-auto flex max-w-[1600px] flex-wrap items-end justify-between gap-6 border-b-2 border-ink pb-8">
           <div>
             <p className="text-sm font-bold uppercase tracking-[0.3em] text-ink/60">
