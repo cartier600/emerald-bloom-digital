@@ -172,7 +172,7 @@ export function FeaturedMenu() {
                   {p.badge}
                 </div>
                 <div className="rounded-full border-2 border-ink bg-cream px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-ink">
-                  {p.type}
+                  {p.category}
                 </div>
               </div>
 
