@@ -168,7 +168,7 @@ export function FeaturedMenu() {
               </svg>
               {/* Badge + Category */}
               <div className="relative flex items-start justify-between gap-2 p-4 pb-0">
-                <div className="rounded-full border-2 border-ink bg-ink px-3 py-1.5 text-[10px] font-black uppercase tracking-widest text-cream">
+                <div className="rounded-full border-2 border-ink bg-magenta px-3 py-1.5 text-[10px] font-black uppercase tracking-widest text-ink">
                   {p.badge}
                 </div>
                 <div className="rounded-full border-2 border-ink bg-cream px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-ink">
