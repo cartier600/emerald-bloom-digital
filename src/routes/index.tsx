@@ -8,6 +8,7 @@ import { StaffPicks } from "@/components/StaffPicks";
 import { Strains } from "@/components/Strains";
 import { FeaturedMenu } from "@/components/FeaturedMenu";
 import { Footer } from "@/components/Footer";
+import { ScrollBanner } from "@/components/ScrollBanner";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,13 +33,13 @@ function Index() {
       <AgeGate />
       <Nav />
       <Hero />
-      <div className="h-16 md:h-24 bg-cream" aria-hidden />
+      <ScrollBanner />
       <BestSellers />
-      <div className="h-16 md:h-24 bg-cream" aria-hidden />
+      <ScrollBanner />
       <StaffPicks />
-      <div className="h-16 md:h-24 bg-cream" aria-hidden />
+      <ScrollBanner />
       <FeaturedMenu />
-      <div className="h-16 md:h-24 bg-cream" aria-hidden />
+      <ScrollBanner />
       <Strains />
       <Footer />
     </main>
