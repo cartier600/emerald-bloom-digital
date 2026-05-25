@@ -58,10 +58,11 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Centered content — product card floats in corner */}
-      <div className="relative z-10 mx-auto mt-20 max-w-[1600px] px-6 md:px-10">
+      {/* Split 60/40 on desktop, stacked on mobile */}
+      <div className="relative z-10 mx-auto mt-20 grid max-w-[1600px] grid-cols-1 gap-12 px-6 md:px-10 lg:grid-cols-10">
+        {/* LEFT 60% — headlines, sub copy, CTAs */}
         <motion.div
-          className="flex flex-col justify-between gap-10"
+          className="flex flex-col justify-between gap-10 lg:col-span-6"
           variants={container}
           initial="hidden"
           animate="show"
@@ -114,39 +115,49 @@ export function Hero() {
             </motion.div>
           </div>
         </motion.div>
-      </div>
 
-      {/* Floating corner widget — hidden on mobile */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.85, y: 30 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 1, ease: EASE, delay: 0.5 }}
-        className="pointer-events-none absolute bottom-8 right-8 z-20 hidden w-72 lg:block"
-      >
+        {/* RIGHT 40% — floating product showcase */}
         <motion.div
-          animate={{ y: [0, -10, 0] }}
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-          className="pointer-events-auto relative rounded-[2rem] border-2 border-ink bg-athletic p-4 shadow-2xl"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, ease: EASE, delay: 0.4 }}
+          className="relative flex items-center justify-center lg:col-span-4"
         >
-          <div className="overflow-hidden rounded-[1.5rem] border-2 border-ink bg-cream">
-            <img
-              src={hybrid}
-              alt="Featured strain"
-              width={512}
-              height={512}
-              className="aspect-square w-full object-cover"
-            />
-          </div>
-          <div className="font-display absolute -left-3 -top-3 rounded-full border-2 border-ink bg-magenta px-3 py-1.5 text-[10px] uppercase tracking-widest text-cream">
-            ✺ Fresh Drop
-          </div>
-          <div className="mt-3 px-1 pb-1">
-            <p className="text-[10px] font-bold uppercase tracking-widest text-cream/70">Today's pick</p>
-            <p className="font-display text-lg text-cream">Wedding Cake</p>
-            <p className="text-xs text-cream/70">26% THC · $38/8th</p>
+          <div className="relative aspect-square w-full max-w-md rounded-[2.5rem] border-2 border-ink bg-athletic p-6">
+            {/* Floating product */}
+            <motion.div
+              animate={{ y: [0, -16, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              className="relative h-full w-full overflow-hidden rounded-[2rem] border-2 border-ink bg-cream"
+            >
+              <img
+                src={hybrid}
+                alt="Featured strain"
+                width={1024}
+                height={1280}
+                className="h-full w-full object-cover"
+              />
+            </motion.div>
+            {/* Floating badges */}
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="font-display absolute -left-4 top-8 rounded-full border-2 border-ink bg-magenta px-4 py-2 text-xs uppercase tracking-widest text-cream"
+            >
+              ✺ Fresh Drop
+            </motion.div>
+            <motion.div
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+              className="absolute -bottom-5 -right-3 rounded-2xl border-2 border-ink bg-cream px-4 py-3 text-left shadow-lg"
+            >
+              <p className="text-[10px] font-bold uppercase tracking-widest text-ink/60">Today's pick</p>
+              <p className="font-display text-lg text-ink">Wedding Cake</p>
+              <p className="text-xs text-ink/60">26% THC · $38/8th</p>
+            </motion.div>
           </div>
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 }
