@@ -77,11 +77,6 @@ export function Hero() {
               <motion.span variants={rise} className="block w-full max-w-[760px]">
                 <MunchiesSmokeText />
               </motion.span>
-              <motion.span variants={rise} className="mt-4 block">
-                <span className="font-display inline-block rounded-md border-2 border-ink bg-athletic px-5 py-2 text-5xl text-ink md:text-7xl">
-                  NY
-                </span>
-              </motion.span>
             </h1>
           </div>
 
