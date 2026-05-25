@@ -3,7 +3,6 @@ import { EASE } from "@/lib/motion";
 import hybrid from "@/assets/strain-hybrid.jpg";
 import { MunchiesSmokeText } from "./MunchiesSmokeText";
 import doodleArt from "@/assets/munchies-doodle-art.png";
-import { DoodleMicroAnimations } from "./DoodleMicroAnimations";
 
 const container = {
   hidden: {},
@@ -37,8 +36,6 @@ export function Hero() {
                 "radial-gradient(ellipse at center, rgba(10,30,20,0.7) 0%, rgba(10,30,20,0.55) 45%, rgba(10,30,20,0.4) 100%)",
             }}
           />
-          {/* SVG overlay aligned to the doodle (object-cover, same aspect) */}
-          <DoodleMicroAnimations className="absolute inset-0 h-full w-full" />
         </div>
       </div>
 
