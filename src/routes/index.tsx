@@ -37,9 +37,7 @@ function Index() {
       <BestSellers />
       <ScrollBanner />
       <StaffPicks />
-      <ScrollBanner />
       <FeaturedMenu />
-      <ScrollBanner />
       <Strains />
       <Footer />
     </main>
