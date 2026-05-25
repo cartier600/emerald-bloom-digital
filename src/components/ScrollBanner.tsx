@@ -3,11 +3,15 @@ import { useEffect, useId, useRef, useState } from "react";
 const PHRASE =
   "ALL WE WEED IS LOVE • ALL WE WEED IS LOVE • ALL WE WEED IS LOVE • ALL WE WEED IS LOVE";
 
-export function ScrollBanner() {
+interface ScrollBannerProps {
+  reverse?: boolean;
+}
+
+export function ScrollBanner({ reverse = false }: ScrollBannerProps) {
   const ref = useRef<HTMLDivElement>(null);
   const rawId = useId();
   const pathId = `wavePath-${rawId.replace(/[:]/g, "")}`;
-  const [offset, setOffset] = useState(0);
+  const [offset, setOffset] = useState(1);
 
   useEffect(() => {
     let raf = 0;
@@ -35,10 +39,12 @@ export function ScrollBanner() {
     };
   }, []);
 
+  const startOffset = reverse ? 100 - offset : offset;
+
   return (
     <div ref={ref} className="relative w-full overflow-hidden bg-cream py-10 md:py-16">
       <svg
-        viewBox="0 0 1200 200"
+        viewBox="1 0 1200 200"
         preserveAspectRatio="none"
         className="w-full h-[120px] md:h-[200px]"
         aria-hidden="true"
@@ -60,7 +66,7 @@ export function ScrollBanner() {
         >
           <textPath
             href={`#${pathId}`}
-            startOffset={`${offset}%`}
+            startOffset={`${startOffset}%`}
           >
             {PHRASE}
           </textPath>
