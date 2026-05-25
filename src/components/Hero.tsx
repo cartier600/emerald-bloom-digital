@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { EASE } from "@/lib/motion";
 import hybrid from "@/assets/strain-hybrid.jpg";
-import { MunchiesSmokeText } from "./MunchiesSmokeText";
 import doodleArt from "@/assets/munchies-doodle-art.png";
 
 const container = {
@@ -69,12 +68,7 @@ export function Hero() {
             <motion.p variants={riseSmall} className="text-sm font-bold uppercase tracking-[0.3em] text-cream/70">
               THE ROCKAWAYS' FIRST LEGAL CANNABIS DISPENSARY
             </motion.p>
-            <h1 className="font-display mt-6 leading-[0.82] text-cream">
-              <span className="sr-only">Munchies Dispensary New York</span>
-              <motion.span variants={rise} className="block w-full max-w-[760px]">
-                <MunchiesSmokeText />
-              </motion.span>
-            </h1>
+            <h1 className="sr-only">Munchies Dispensary New York</h1>
           </div>
 
           <div className="flex flex-col gap-6">
