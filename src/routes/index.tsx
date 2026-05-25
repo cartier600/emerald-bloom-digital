@@ -3,6 +3,7 @@ import { AgeGate } from "@/components/AgeGate";
 import { Nav } from "@/components/Nav";
 import { IntroPreloader } from "@/components/IntroPreloader";
 import { Hero } from "@/components/Hero";
+import { BestSellers } from "@/components/BestSellers";
 import { Strains } from "@/components/Strains";
 import { FeaturedMenu } from "@/components/FeaturedMenu";
 import { Footer } from "@/components/Footer";
@@ -30,6 +31,7 @@ function Index() {
       <AgeGate />
       <Nav />
       <Hero />
+      <BestSellers />
       <FeaturedMenu />
       <Strains />
       <Footer />
