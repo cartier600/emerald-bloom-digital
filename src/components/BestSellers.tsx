@@ -1,163 +1,73 @@
 import { motion } from "framer-motion";
-import { useRef } from "react";
-import doodleArt from "@/assets/munchies-doodle-art.png";
-import flowerJar from "@/assets/bestseller-flower-jar.png";
-import concentrate from "@/assets/bestseller-concentrate.png";
-import preroll from "@/assets/bestseller-preroll.png";
+import gummies from "@/assets/product-gummies.jpg";
+import flower from "@/assets/product-flower.jpg";
 import { EASE } from "@/lib/motion";
 
-type Item = {
-  img: string;
+type Product = {
   name: string;
-  thc: string;
+  brand: string;
   category: string;
-  accent: string; // tailwind bg class
-  textOn: string; // tailwind text class for accent
-  fromLeft: boolean;
-  bobDur: number;
-  bobDelay: number;
+  badge: string;
+  badgeBg: string;
+  badgeText: string;
+  thc: string;
+  price: string;
+  image: string;
 };
 
-const items: Item[] = [
+const PRODUCTS: Product[] = [
   {
-    img: flowerJar,
-    name: "Wedding Cake",
-    thc: "26% THC",
-    category: "Signature Flower",
-    accent: "bg-neon-yellow",
-    textOn: "text-ink",
-    fromLeft: true,
-    bobDur: 5,
-    bobDelay: 0,
+    name: "Wyld Boysenberry Gummies",
+    brand: "Wyld",
+    category: "Gummies / Indica",
+    badge: "Indica Enhanced",
+    badgeBg: "bg-magenta",
+    badgeText: "text-cream",
+    thc: "100mg THC",
+    price: "$28",
+    image: gummies,
   },
   {
-    img: concentrate,
-    name: "Papaya Live Rosin",
-    thc: "82% THC",
-    category: "Concentrate",
-    accent: "bg-magenta",
-    textOn: "text-cream",
-    fromLeft: false,
-    bobDur: 5.6,
-    bobDelay: 0.4,
+    name: "Camino Midnight Blueberry",
+    brand: "Camino",
+    category: "Gummies / Sleep",
+    badge: "Tranquil",
+    badgeBg: "bg-forest",
+    badgeText: "text-cream",
+    thc: "300mg THC",
+    price: "$32",
+    image: gummies,
   },
   {
-    img: preroll,
-    name: "Sunset Sherbet 5-Pack",
-    thc: "24% THC",
-    category: "Pre-Roll Pack",
-    accent: "bg-athletic",
-    textOn: "text-ink",
-    fromLeft: true,
-    bobDur: 6.2,
-    bobDelay: 0.8,
+    name: "Find. Bottomless Mints",
+    brand: "Find.",
+    category: "Flower / Strain",
+    badge: "Everyday",
+    badgeBg: "bg-athletic",
+    badgeText: "text-ink",
+    thc: "22% THC",
+    price: "$45/8th",
+    image: flower,
+  },
+  {
+    name: "Runtz Amaretto Di Lemon",
+    brand: "Runtz",
+    category: "Flower / Hybrid",
+    badge: "Premium",
+    badgeBg: "bg-neon-yellow",
+    badgeText: "text-ink",
+    thc: "28% THC",
+    price: "$60/8th",
+    image: flower,
   },
 ];
-
-function BestSellerRow({ item, index }: { item: Item; index: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const dir = item.fromLeft ? -120 : 120;
-
-  return (
-    <div
-      ref={ref}
-      className={`relative flex flex-col items-center gap-6 md:gap-10 ${
-        item.fromLeft ? "md:flex-row" : "md:flex-row-reverse"
-      }`}
-    >
-      {/* MIDDLE LAYER — product hero shot */}
-      <motion.div
-        initial={{ opacity: 0, x: dir, scale: 0.7 }}
-        whileInView={{ opacity: 1, x: 0, scale: 1 }}
-        viewport={{ once: true, amount: 0.35 }}
-        transition={{ duration: 1, ease: EASE }}
-        className="relative w-full max-w-[480px] md:w-[48%] md:max-w-none"
-      >
-        <motion.img
-          src={item.img}
-          alt={item.name}
-          width={1024}
-          height={1024}
-          loading="lazy"
-          animate={{ y: [-6, 6, -6] }}
-          transition={{
-            duration: item.bobDur,
-            delay: item.bobDelay,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="relative z-10 mx-auto h-auto w-full max-w-[520px] select-none drop-shadow-[0_40px_50px_rgba(0,0,0,0.55)]"
-          style={{ filter: "drop-shadow(0 0 60px rgba(255,255,200,0.15))" }}
-        />
-        {/* glowing halo behind product */}
-        <div
-          aria-hidden
-          className="absolute left-1/2 top-1/2 -z-0 h-[70%] w-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl opacity-40"
-          style={{ background: "radial-gradient(circle, #fde047 0%, transparent 70%)" }}
-        />
-      </motion.div>
-
-      {/* FOREGROUND LAYER — text details */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.35 }}
-        transition={{ duration: 0.9, ease: EASE, delay: 0.2 }}
-        className={`relative z-20 w-full md:w-[52%] ${
-          item.fromLeft ? "md:-ml-16 md:text-left" : "md:-mr-16 md:text-right"
-        }`}
-      >
-        <div
-          className={`inline-flex items-center gap-2 rounded-full border-2 border-ink ${item.accent} ${item.textOn} px-4 py-1.5 text-xs font-bold uppercase tracking-[0.25em]`}
-        >
-          <span>✺</span> Best Seller #{index + 1}
-        </div>
-        <p className="mt-4 text-xs font-bold uppercase tracking-[0.3em] text-cream/70">
-          {item.category}
-        </p>
-        <h3
-          className="font-display mt-2 leading-[0.85] text-cream"
-          style={{ textShadow: "0 4px 24px rgba(0,0,0,0.7)" }}
-        >
-          <span className="block text-[clamp(3rem,8vw,7rem)]">{item.name}</span>
-        </h3>
-        <div
-          className={`mt-4 inline-block rounded-md border-2 border-ink bg-cream px-4 py-2 font-display text-3xl text-ink md:text-4xl`}
-        >
-          {item.thc}
-        </div>
-        <p className="mt-5 max-w-md text-cream/85 md:text-lg" style={{ textShadow: "0 2px 10px rgba(0,0,0,0.6)" }}>
-          {index === 0 && "Top-shelf indoor flower. Frosty, dense, and packed with terps."}
-          {index === 1 && "Solventless live rosin pressed from fresh-frozen flower. Pure terps, full melt."}
-          {index === 2 && "Five perfectly packed pre-rolls. Convenience meets connoisseur quality."}
-        </p>
-      </motion.div>
-    </div>
-  );
-}
 
 export function BestSellers() {
   return (
     <section
       id="best-sellers"
-      className="relative overflow-hidden bg-forest py-32 md:py-40 text-cream"
+      className="relative overflow-hidden bg-forest py-32 md:py-40 my-16 md:my-20 text-cream"
     >
-      {/* BACKGROUND LAYER — doodle art continuing under the section */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
-        <img
-          src={doodleArt}
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover opacity-25"
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse at center, rgba(10,30,20,0.55) 0%, rgba(10,30,20,0.7) 70%, rgba(10,30,20,0.85) 100%)",
-          }}
-        />
-      </div>
-
       <div className="relative z-10 mx-auto max-w-[1500px] px-6 md:px-10">
         {/* Section header */}
         <motion.div
@@ -165,28 +75,73 @@ export function BestSellers() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.8, ease: EASE }}
-          className="mb-16 flex flex-col items-start gap-4 md:mb-24 md:flex-row md:items-end md:justify-between"
+          className="mb-16 flex flex-col items-start gap-4 md:mb-20 md:flex-row md:items-end md:justify-between"
         >
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.4em] text-athletic">
               Floating off the shelves
             </p>
-            <h2
-              className="font-display mt-3 text-[clamp(3rem,9vw,8rem)] leading-[0.85] text-cream"
-              style={{ textShadow: "0 6px 30px rgba(0,0,0,0.6)" }}
-            >
+            <h2 className="font-display mt-3 text-[clamp(3rem,9vw,8rem)] leading-[0.85] text-cream">
               BEST <span className="text-neon-yellow">SELLERS</span>
             </h2>
           </div>
           <p className="max-w-sm text-base text-cream/80 md:text-lg">
-            The three jars, dabs and packs our regulars keep coming back for. Fresh-stocked weekly.
+            Four picks our regulars keep coming back for. Fresh-stocked weekly.
           </p>
         </motion.div>
 
-        {/* Product showcase rows */}
-        <div className="flex flex-col gap-28 md:gap-40">
-          {items.map((it, i) => (
-            <BestSellerRow key={it.name} item={it} index={i} />
+        {/* Product grid */}
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+          {PRODUCTS.map((p, i) => (
+            <motion.article
+              key={p.name}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.7, ease: EASE, delay: i * 0.08 }}
+              whileHover={{ y: -6 }}
+              className="group flex flex-col rounded-[1.75rem] border-2 border-ink bg-[#FDFBF7] p-4 text-ink shadow-[8px_8px_0_0_rgba(0,0,0,1)] transition-shadow hover:shadow-[12px_12px_0_0_rgba(0,0,0,1)]"
+            >
+              {/* Image */}
+              <div className="relative overflow-hidden rounded-[1.25rem] border-2 border-ink bg-cream">
+                <img
+                  src={p.image}
+                  alt={p.name}
+                  loading="lazy"
+                  className="aspect-square w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <span
+                  className={`absolute left-3 top-3 rounded-full border-2 border-ink ${p.badgeBg} ${p.badgeText} px-3 py-1 text-[10px] font-bold uppercase tracking-widest`}
+                >
+                  {p.badge}
+                </span>
+              </div>
+
+              {/* Body */}
+              <div className="mt-4 flex flex-1 flex-col">
+                <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-ink/60">
+                  {p.category}
+                </p>
+                <h3 className="font-display mt-2 text-2xl leading-tight text-ink">
+                  {p.name}
+                </h3>
+                <div className="mt-3 flex items-center justify-between text-sm">
+                  <span className="rounded-md border-2 border-ink bg-cream px-2.5 py-1 font-bold">
+                    {p.thc}
+                  </span>
+                  <span className="font-display text-xl">{p.price}</span>
+                </div>
+
+                {/* Buy Now */}
+                <button
+                  type="button"
+                  className="font-display mt-5 flex items-center justify-center gap-2 rounded-full border-2 border-ink bg-ink py-3 text-sm uppercase tracking-widest text-cream transition-colors hover:bg-athletic hover:text-ink"
+                >
+                  Buy Now
+                  <span aria-hidden>→</span>
+                </button>
+              </div>
+            </motion.article>
           ))}
         </div>
       </div>
