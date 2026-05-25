@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { EASE } from "@/lib/motion";
 import hybrid from "@/assets/strain-hybrid.jpg";
-import doodleArt from "@/assets/munchies-doodle-art.png";
 
 const container = {
   hidden: {},
@@ -22,11 +21,15 @@ export function Hero() {
       {/* Doodle background + synchronized micro-animations */}
       <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
         <div className="relative h-full w-full">
-          <img
-            src={doodleArt}
-            alt=""
-            className="absolute inset-0 h-full w-full object-cover opacity-40"
-          />
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 h-full w-full object-cover"
+          >
+            <source src="/hero-video.mp4" type="video/mp4" />
+          </video>
           {/* Dark vignette so headline stays legible */}
           <div
             className="absolute inset-0"
