@@ -134,6 +134,7 @@ function HybridBackdrop({ progress }: { progress: MotionValue<number> }) {
   const flowerScale = useTransform(progress, [0, 1], [0.85, 1.15]);
   const squiggleX = useTransform(progress, [0, 1], ["-5%", "8%"]);
   const leafRot = useTransform(progress, [0, 1], [-8, 14]);
+  const smallFlowerRot = useTransform(progress, [0, 1], [0, -120]);
   return (
     <motion.svg
       aria-hidden
@@ -161,7 +162,7 @@ function HybridBackdrop({ progress }: { progress: MotionValue<number> }) {
         </g>
       </motion.g>
       {/* Small bloom */}
-      <motion.g style={{ rotate: useTransform(progress, [0, 1], [0, -120]), originX: "78%", originY: "75%" }}>
+      <motion.g style={{ rotate: smallFlowerRot, originX: "78%", originY: "75%" }}>
         <g transform="translate(310 450)">
           {Array.from({ length: 6 }).map((_, i) => (
             <ellipse
