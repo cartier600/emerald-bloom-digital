@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import { useRef, useState } from "react";
 import { MunchiesSmokeText } from "./MunchiesSmokeText";
+import doodleArt from "@/assets/munchies-doodle-art.png";
 
 // Scroll-tied transition between the Sativa (yellow) world and THE MENU.
 // A green fractal/bud wave accelerates downward, collapses into a black
@@ -43,6 +44,11 @@ export function WeedToMenuTransition() {
   const heroY = useTransform(scrollYProgress, [0, 0.35], ["0%", "-10%"]);
   const heroScale = useTransform(scrollYProgress, [0, 0.35], [1, 0.92]);
 
+  // Doodle art parallax: drifts up + zooms slightly as you scroll, then fades for vortex
+  const artY = useTransform(scrollYProgress, [0, 0.4], ["0%", "-18%"]);
+  const artScale = useTransform(scrollYProgress, [0, 0.4], [1.05, 1.2]);
+  const artOpacity = useTransform(scrollYProgress, [0, 0.25, 0.45], [1, 0.85, 0]);
+
   // Sticky stage color for the inner content (text contrast)
   const [phase, setPhase] = useState<"start" | "mid" | "end">("start");
   useMotionValueEvent(scrollYProgress, "change", (v) => {
@@ -59,6 +65,27 @@ export function WeedToMenuTransition() {
       aria-label="Transition into the menu"
     >
       <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden">
+        {/* Maximalist doodle backdrop */}
+        <motion.div
+          aria-hidden
+          style={{ y: artY, scale: artScale, opacity: artOpacity }}
+          className="absolute inset-0 z-0"
+        >
+          <img
+            src={doodleArt}
+            alt=""
+            className="h-full w-full object-cover"
+          />
+          {/* Dark vignette to keep headline + NY block legible */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(ellipse at center, rgba(10,10,20,0.35) 0%, rgba(10,10,20,0.65) 55%, rgba(10,10,20,0.85) 100%)",
+            }}
+          />
+        </motion.div>
+
         {/* Hero headline overlay — sits on top of the vortex as the opening fold */}
         <motion.div
           style={{ opacity: heroOpacity, y: heroY, scale: heroScale }}
