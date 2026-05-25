@@ -18,12 +18,12 @@ export function Footer() {
   return (
     <footer id="location" className="relative overflow-hidden bg-ink text-cream">
       {/* Marquee strip */}
-      <div className="border-y-2 border-cream/20 bg-magenta py-3">
+      <div className="border-y-2 border-ink bg-neon-yellow py-3">
         <div className="marquee-track flex whitespace-nowrap">
           {Array.from({ length: 2 }).map((_, i) => (
             <div key={i} className="flex shrink-0 items-center gap-10 pr-10">
-              {["STAY HIGH", "STAY HUMBLE", "21+ ONLY", "GROWN WITH LOVE", "MUNCHIES CO."].map((t) => (
-                <span key={t} className="font-display flex items-center gap-10 text-2xl text-cream">
+              {["ROCKAWAY BEACH VIBES", "21+ ONLY", "FREE LOCAL DELIVERY", "PREMIUM NY BRANDS", "FRESH FLOWER"].map((t) => (
+                <span key={t} className="font-display flex items-center gap-10 text-2xl text-ink">
                   {t} <span>✺</span>
                 </span>
               ))}
