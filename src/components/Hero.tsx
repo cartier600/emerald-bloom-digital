@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { EASE } from "@/lib/motion";
 import hybrid from "@/assets/strain-hybrid.jpg";
 import { MunchiesSmokeText } from "./MunchiesSmokeText";
+import doodleArt from "@/assets/munchies-doodle-art.png";
+import { DoodleMicroAnimations } from "./DoodleMicroAnimations";
 
 const container = {
   hidden: {},
@@ -19,8 +21,29 @@ const riseSmall = {
 export function Hero() {
   return (
     <section className="relative min-h-screen overflow-hidden bg-forest pt-32 pb-16 text-cream">
+      {/* Doodle background + synchronized micro-animations */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
+        <div className="relative h-full w-full">
+          <img
+            src={doodleArt}
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover opacity-40"
+          />
+          {/* Dark vignette so headline stays legible */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(ellipse at center, rgba(10,30,20,0.7) 0%, rgba(10,30,20,0.55) 45%, rgba(10,30,20,0.4) 100%)",
+            }}
+          />
+          {/* SVG overlay aligned to the doodle (object-cover, same aspect) */}
+          <DoodleMicroAnimations className="absolute inset-0 h-full w-full" />
+        </div>
+      </div>
+
       {/* Marquee top */}
-      <div className="absolute left-0 right-0 top-24 overflow-hidden border-y-2 border-ink bg-neon-yellow py-3">
+      <div className="absolute left-0 right-0 top-24 z-10 overflow-hidden border-y-2 border-ink bg-neon-yellow py-3">
         <div className="marquee-track flex whitespace-nowrap">
           {Array.from({ length: 2 }).map((_, i) => (
             <div key={i} className="flex shrink-0 items-center gap-8 pr-8">
@@ -37,7 +60,7 @@ export function Hero() {
       </div>
 
       {/* Split 60/40 on desktop, stacked on mobile */}
-      <div className="relative mx-auto mt-16 grid max-w-[1600px] grid-cols-1 gap-10 px-6 md:px-10 lg:grid-cols-10">
+      <div className="relative z-10 mx-auto mt-16 grid max-w-[1600px] grid-cols-1 gap-10 px-6 md:px-10 lg:grid-cols-10">
         {/* LEFT 60% — headlines, sub copy, CTAs */}
         <motion.div
           className="flex flex-col justify-between gap-10 lg:col-span-6"
