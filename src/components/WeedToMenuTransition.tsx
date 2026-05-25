@@ -1,5 +1,5 @@
-import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
-import { useRef, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { MunchiesSmokeText } from "./MunchiesSmokeText";
 import doodleArt from "@/assets/munchies-doodle-art.png";
 
@@ -13,62 +13,26 @@ export function WeedToMenuTransition() {
     offset: ["start end", "end start"],
   });
 
-  // Background morph: acid (yellow) → lime (green) → cream
-  const background = useTransform(
-    scrollYProgress,
-    [0, 0.45, 0.85, 1],
-    [
-      "oklch(0.92 0.22 110)",
-      "oklch(0.78 0.25 145)",
-      "oklch(0.25 0.15 290)",
-      "oklch(0.97 0.04 95)",
-    ],
-  );
-
-  // Bud wave: rides downward, accelerates, then disappears
-  const waveY = useTransform(scrollYProgress, [0, 0.55], ["-20%", "120%"]);
-  const waveScale = useTransform(scrollYProgress, [0, 0.4, 0.6], [1, 1.6, 0.4]);
-  const waveOpacity = useTransform(scrollYProgress, [0, 0.35, 0.55], [1, 1, 0]);
-
-  // Vortex: appears mid-scroll, spins, then collapses into the M
-  const vortexOpacity = useTransform(scrollYProgress, [0.4, 0.55, 0.85, 0.95], [0, 1, 1, 0]);
-  const vortexRotate = useTransform(scrollYProgress, [0.4, 0.95], [0, 540]);
-  const vortexScale = useTransform(scrollYProgress, [0.4, 0.7, 0.95], [2.2, 1, 0.4]);
-
-  // M letter: snaps in at the very end
-  const mOpacity = useTransform(scrollYProgress, [0.82, 0.95], [0, 1]);
-  const mScale = useTransform(scrollYProgress, [0.82, 0.95, 1], [0.4, 1.1, 1]);
-
   // Hero headline overlay: visible at the top, fades as the vortex takes over
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.18, 0.32], [1, 1, 0]);
-  const heroY = useTransform(scrollYProgress, [0, 0.35], ["0%", "-10%"]);
-  const heroScale = useTransform(scrollYProgress, [0, 0.35], [1, 0.92]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.45, 0.7], [1, 1, 0]);
+  const heroY = useTransform(scrollYProgress, [0, 0.7], ["0%", "-12%"]);
+  const heroScale = useTransform(scrollYProgress, [0, 0.7], [1, 0.94]);
 
   // Doodle art parallax: drifts up + zooms slightly as you scroll, then fades for vortex
-  const artY = useTransform(scrollYProgress, [0, 0.4], ["0%", "-18%"]);
-  const artScale = useTransform(scrollYProgress, [0, 0.4], [1.05, 1.2]);
-  const artOpacity = useTransform(scrollYProgress, [0, 0.25, 0.45], [1, 0.85, 0]);
-
-  // Sticky stage color for the inner content (text contrast)
-  const [phase, setPhase] = useState<"start" | "mid" | "end">("start");
-  useMotionValueEvent(scrollYProgress, "change", (v) => {
-    setPhase(v < 0.5 ? "start" : v < 0.85 ? "mid" : "end");
-  });
-  const textColor =
-    phase === "end" ? "text-ink" : phase === "mid" ? "text-cream" : "text-ink";
+  const artY = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
+  const artScale = useTransform(scrollYProgress, [0, 1], [1.05, 1.25]);
 
   return (
-    <motion.section
+    <section
       ref={ref}
-      style={{ background }}
-      className="relative h-[220vh] w-full border-y-2 border-ink"
+      className="relative h-[180vh] w-full border-y-2 border-ink bg-ink"
       aria-label="Transition into the menu"
     >
       <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden">
         {/* Maximalist doodle backdrop */}
         <motion.div
           aria-hidden
-          style={{ y: artY, scale: artScale, opacity: artOpacity }}
+          style={{ y: artY, scale: artScale }}
           className="absolute inset-0 z-0"
         >
           <img
@@ -76,114 +40,46 @@ export function WeedToMenuTransition() {
             alt=""
             className="h-full w-full object-cover"
           />
-          {/* Dark vignette to keep headline + NY block legible */}
+          {/* Dark vignette behind the headline for legibility */}
           <div
             className="absolute inset-0"
             style={{
               background:
-                "radial-gradient(ellipse at center, rgba(10,10,20,0.35) 0%, rgba(10,10,20,0.65) 55%, rgba(10,10,20,0.85) 100%)",
+                "radial-gradient(ellipse at center, rgba(10,10,20,0.55) 0%, rgba(10,10,20,0.35) 45%, rgba(10,10,20,0.2) 100%)",
             }}
           />
         </motion.div>
 
-        {/* Hero headline overlay — sits on top of the vortex as the opening fold */}
+        {/* Hero headline overlay — sits on top of the doodle as the opening fold */}
         <motion.div
           style={{ opacity: heroOpacity, y: heroY, scale: heroScale }}
-          className="pointer-events-none absolute inset-0 z-20 mx-auto flex max-w-[1400px] flex-col items-center justify-center px-6 text-center"
+          className="pointer-events-none absolute inset-0 z-30 mx-auto flex max-w-[1400px] flex-col items-center justify-center px-6 text-center"
+          style-shadow=""
         >
-          <p className="mb-6 text-xs font-bold uppercase tracking-[0.4em] text-cream/80">
+          <p className="mb-6 text-xs font-bold uppercase tracking-[0.4em] text-cream [text-shadow:0_2px_8px_rgba(0,0,0,0.9)]">
             ✺ The Rockaways' First Legal Dispensary
           </p>
-          <h1 className="font-display leading-[0.85] text-cream">
+          <h1 className="font-display leading-[0.85] text-cream drop-shadow-[0_6px_24px_rgba(0,0,0,0.85)]">
             <span className="sr-only">Munchies NY</span>
             <span className="block w-full max-w-[900px]">
               <MunchiesSmokeText />
             </span>
-            <span className="mt-4 inline-block rounded-md border-2 border-ink bg-magenta px-6 py-2 text-6xl text-cream md:text-8xl">
+            <span className="mt-4 inline-block rounded-md border-2 border-ink bg-magenta px-6 py-2 text-6xl text-cream shadow-[0_8px_24px_rgba(0,0,0,0.6)] md:text-8xl">
               NY
             </span>
           </h1>
-          <p className="mt-8 text-sm font-semibold uppercase tracking-[0.3em] text-cream/70">
+          <p className="mt-8 text-sm font-semibold uppercase tracking-[0.3em] text-cream [text-shadow:0_2px_8px_rgba(0,0,0,0.9)]">
             Scroll ↓
           </p>
         </motion.div>
 
-        {/* Fractal bud wave (layered blobs) */}
-        <motion.svg
-          aria-hidden
-          viewBox="0 0 800 800"
-          style={{ y: waveY, scale: waveScale, opacity: waveOpacity }}
-          className="absolute inset-0 m-auto h-[120vh] w-[120vh] max-w-none"
-        >
-          <defs>
-            <radialGradient id="bud" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="oklch(0.88 0.28 145)" />
-              <stop offset="60%" stopColor="oklch(0.55 0.22 150)" />
-              <stop offset="100%" stopColor="oklch(0.22 0.12 160)" />
-            </radialGradient>
-          </defs>
-          {[0, 1, 2, 3, 4].map((i) => (
-            <motion.path
-              key={i}
-              d="M400 80 C 560 140 700 260 700 420 C 700 600 540 720 400 720 C 260 720 100 600 100 420 C 100 260 240 140 400 80 Z"
-              fill="url(#bud)"
-              opacity={0.18 + i * 0.12}
-              animate={{
-                rotate: [0, 12, -8, 0],
-                scale: [1, 1.05 + i * 0.02, 1],
-              }}
-              transition={{
-                duration: 6 + i,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              style={{ transformOrigin: "400px 400px" }}
-            />
-          ))}
-        </motion.svg>
-
-        {/* Black vortex */}
-        <motion.div
-          aria-hidden
-          style={{
-            opacity: vortexOpacity,
-            rotate: vortexRotate,
-            scale: vortexScale,
-          }}
-          className="absolute h-[80vh] w-[80vh] rounded-full"
-        >
-          {[0, 1, 2, 3, 4, 5].map((i) => (
-            <div
-              key={i}
-              className="absolute inset-0 rounded-full border-2 border-ink"
-              style={{
-                transform: `scale(${1 - i * 0.14}) rotate(${i * 28}deg)`,
-                borderTopColor: "transparent",
-                borderRightColor: i % 2 ? "transparent" : "var(--ink)",
-                background:
-                  i === 0
-                    ? "radial-gradient(circle at 50% 50%, oklch(0.12 0.02 270) 0%, oklch(0.12 0.02 270 / 0.4) 60%, transparent 75%)"
-                    : "transparent",
-              }}
-            />
-          ))}
-        </motion.div>
-
-        {/* Snapping M letter */}
-        <motion.span
-          style={{ opacity: mOpacity, scale: mScale }}
-          className="font-display absolute text-ink"
-        >
-          <span className="block text-[40vh] leading-none">M</span>
-        </motion.span>
-
         {/* Caption */}
-        <div className={`pointer-events-none absolute bottom-12 left-0 right-0 text-center transition-colors ${textColor}`}>
-          <p className="text-xs font-bold uppercase tracking-[0.4em] opacity-80">
+        <div className="pointer-events-none absolute bottom-12 left-0 right-0 z-30 text-center">
+          <p className="text-xs font-bold uppercase tracking-[0.4em] text-cream [text-shadow:0_2px_8px_rgba(0,0,0,0.9)]">
             ✺ Scroll into the menu
           </p>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }
