@@ -1,7 +1,6 @@
-import { useEffect, useId, useRef, useState } from "react";
+import { Fragment, useEffect, useId, useRef, useState } from "react";
 
-const PHRASE =
-  "ALL WE WEED IS LOVE • ALL WE WEED IS LOVE • ALL WE WEED IS LOVE • ALL WE WEED IS LOVE";
+const REPEAT = 4;
 
 interface ScrollBannerProps {
   reverse?: boolean;
@@ -68,7 +67,16 @@ export function ScrollBanner({ reverse = false }: ScrollBannerProps) {
             href={`#${pathId}`}
             startOffset={`${startOffset}%`}
           >
-            {PHRASE}
+          {Array.from({ length: REPEAT }).map((_, i) => (
+            <Fragment key={i}>
+              <tspan>ALL </tspan>
+              <tspan>WE </tspan>
+              <tspan fill="#2f7d32">WEED </tspan>
+              <tspan>IS </tspan>
+              <tspan fill="#e63946">LOVE </tspan>
+              <tspan fill="#f4b400">• </tspan>
+            </Fragment>
+          ))}
           </textPath>
         </text>
       </svg>
