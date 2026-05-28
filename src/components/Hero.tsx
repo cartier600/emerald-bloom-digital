@@ -20,27 +20,28 @@ export function Hero() {
   return (
     <section className="relative min-h-screen overflow-hidden bg-forest pt-36 pb-32 text-cream">
       {/* Doodle background + synchronized micro-animations */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
-        <div className="relative h-full w-full">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 h-full w-full object-cover"
-          >
-            <source src="/hero-video.mp4" type="video/mp4" />
-          </video>
-          {/* Dark vignette so headline stays legible */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "radial-gradient(ellipse at center, rgba(10,30,20,0.7) 0%, rgba(10,30,20,0.55) 45%, rgba(10,30,20,0.4) 100%)",
-            }}
-          />
-        </div>
-      </div>
+      {/* Looping background video */}
+      <video
+        aria-hidden
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        disablePictureInPicture
+        controls={false}
+        src="/hero-video.mp4"
+        className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
+      />
+      {/* Dark vignette so headline stays legible */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-0"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, rgba(10,30,20,0.7) 0%, rgba(10,30,20,0.55) 45%, rgba(10,30,20,0.4) 100%)",
+        }}
+      />
 
       {/* Psychedelic cartoon cluster — parallax, ~30% opacity */}
       <PsychedelicBackground />
