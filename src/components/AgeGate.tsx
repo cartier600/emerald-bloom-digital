@@ -37,7 +37,7 @@ export function AgeGate() {
         className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
       >
         <source
-          src="https://files.catbox.moe/hfk3yu.mov"
+          src="/entrance-loop.mov"
           type="video/quicktime"
         />
       </video>

@@ -44,9 +44,10 @@ export function Hero() {
         preload="auto"
         disablePictureInPicture
         controls={false}
-        src="https://files.catbox.moe/8rh1df.MP4"
         className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
-      />
+      >
+        <source src="/entrance-loop.mov" type="video/quicktime" />
+      </video>
 
       {/* Marquee top */}
       <div className="absolute left-0 right-0 top-24 z-10 overflow-hidden border-y-2 border-ink bg-neon-yellow py-3">
