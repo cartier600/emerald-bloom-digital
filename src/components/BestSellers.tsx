@@ -71,19 +71,19 @@ export function BestSellers() {
       className="relative overflow-hidden bg-forest py-32 md:py-40 my-16 md:my-20 text-cream"
     >
       <div className="relative z-10 mx-auto max-w-[1500px] px-6 md:px-10">
-        {/* Section header */}
+        {/* Pinned section header — sticks while product grid scrolls past */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.8, ease: EASE }}
-          className="mb-16 flex flex-col items-start gap-4 md:mb-20 md:flex-row md:items-end md:justify-between"
+          className="sticky top-20 z-20 mb-16 flex flex-col items-start gap-4 bg-forest/85 backdrop-blur-sm py-4 md:mb-20 md:flex-row md:items-end md:justify-between"
         >
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.4em] text-athletic">
               Floating off the shelves
             </p>
-            <h2 className="font-display mt-3 text-[clamp(3rem,9vw,8rem)] leading-[0.85] text-cream">
+            <h2 className="font-display mt-3 text-[clamp(2.5rem,9vw,8rem)] leading-[0.85] text-cream">
               BEST <span className="text-neon-yellow">SELLERS</span>
             </h2>
           </div>
