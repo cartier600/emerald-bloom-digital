@@ -200,4 +200,38 @@
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
   }
+
+  /* Psychedelic loop keyframes */
+  @keyframes psyDrift {
+    0%   { transform: translate(0,0) rotate(0deg) scale(1); }
+    50%  { transform: translate(var(--dx,20px), var(--dy,-30px)) rotate(180deg) scale(1.15); }
+    100% { transform: translate(0,0) rotate(360deg) scale(1); }
+  }
+  @keyframes psyPulse {
+    0%,100% { transform: scale(1); opacity: var(--o, 0.6); }
+    50%     { transform: scale(1.4); opacity: 0.15; }
+  }
+  @keyframes psySpin {
+    to { transform: rotate(360deg); }
+  }
+  .psy-drift { animation: psyDrift var(--dur, 18s) ease-in-out infinite; will-change: transform; }
+  .psy-pulse { animation: psyPulse var(--dur, 6s) ease-in-out infinite; will-change: transform, opacity; }
+  .psy-spin  { animation: psySpin var(--dur, 40s) linear infinite; will-change: transform; }
+
+  /* Iridescent shifting gradient */
+  @keyframes iridescentShift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  .iridescent-text {
+    background: linear-gradient(90deg,
+      #2f7d32 0%, #f4b400 25%, #e63946 50%,
+      #c9a0dc 75%, #2f7d32 100%);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: iridescentShift 12s ease infinite;
+  }
 }
