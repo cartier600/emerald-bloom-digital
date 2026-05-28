@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { EASE } from "@/lib/motion";
 import hybrid from "@/assets/strain-hybrid.jpg";
+import { PsychedelicBackground } from "@/components/PsychedelicBackground";
 
 const container = {
   hidden: {},
@@ -40,6 +41,9 @@ export function Hero() {
           />
         </div>
       </div>
+
+      {/* Psychedelic cartoon cluster — parallax, ~30% opacity */}
+      <PsychedelicBackground />
 
       {/* Marquee top */}
       <div className="absolute left-0 right-0 top-24 z-10 overflow-hidden border-y-2 border-ink bg-neon-yellow py-3">
