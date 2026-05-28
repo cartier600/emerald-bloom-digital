@@ -72,7 +72,11 @@ export function Hero() {
           animate="show"
         >
           <div>
-            <motion.p variants={riseSmall} className="text-sm font-bold uppercase tracking-[0.3em] text-cream/70">
+            <motion.p
+              variants={riseSmall}
+              className="whitespace-nowrap font-bold uppercase tracking-[0.3em] text-cream/70"
+              style={{ fontSize: "clamp(0.625rem, 1.35vw, 0.95rem)" }}
+            >
               THE ROCKAWAYS' FIRST LEGAL CANNABIS DISPENSARY
             </motion.p>
             <h1 className="sr-only">Munchies Dispensary New York</h1>
