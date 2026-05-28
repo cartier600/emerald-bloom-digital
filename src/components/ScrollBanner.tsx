@@ -1,4 +1,5 @@
 import { Fragment, useEffect, useId, useRef, useState } from "react";
+import { LiquidShader } from "@/components/LiquidShader";
 
 const REPEAT = 4;
 
@@ -42,10 +43,12 @@ export function ScrollBanner({ reverse = false }: ScrollBannerProps) {
 
   return (
     <div ref={ref} className="relative w-full overflow-hidden bg-cream py-10 md:py-16">
+      {/* Interactive liquid color-shift backdrop (cannabis green / hot pink / warm gold) */}
+      <LiquidShader className="pointer-events-none opacity-60 mix-blend-multiply" />
       <svg
         viewBox="1 0 1200 200"
         preserveAspectRatio="none"
-        className="w-full h-[120px] md:h-[200px]"
+        className="relative z-10 w-full h-[120px] md:h-[200px]"
         aria-hidden="true"
       >
         <defs>
