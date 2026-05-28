@@ -37,8 +37,8 @@ export function AgeGate() {
         className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
       >
         <source
-          src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-          type="video/mp4"
+          src="https://files.catbox.moe/hfk3yu.mov"
+          type="video/quicktime"
         />
       </video>
 

@@ -44,7 +44,7 @@ export function Hero() {
         preload="auto"
         disablePictureInPicture
         controls={false}
-        src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+        src="https://files.catbox.moe/8rh1df.MP4"
         className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
       />
 
