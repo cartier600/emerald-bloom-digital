@@ -4,6 +4,7 @@ import nyCheddar from "@/assets/product-ny-cheddar.jpg";
 import strawberryBliss from "@/assets/product-strawberry-bliss.jpg";
 import permanentMarker from "@/assets/product-permanent-marker.jpg";
 import { EASE } from "@/lib/motion";
+import { TrippyShapes } from "@/components/TrippyShapes";
 
 type Product = {
   name: string;
@@ -75,6 +76,7 @@ export function StaffPicks() {
       id="staff-picks"
       className="relative overflow-hidden bg-cream py-32 md:py-40 my-16 md:my-20 text-ink"
     >
+      <TrippyShapes variant="picks" />
       <div className="relative z-10 mx-auto max-w-[1500px] px-6 md:px-10">
         {/* Section header */}
         <motion.div
