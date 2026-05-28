@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { EASE } from "@/lib/motion";
 import hybrid from "@/assets/strain-hybrid.jpg";
-import { PsychedelicBackground } from "@/components/PsychedelicBackground";
 import { prefetchSection } from "@/lib/prefetchSection";
 import { useEffect, useRef } from "react";
 
@@ -49,18 +48,6 @@ export function Hero() {
         src="/hero-video.mp4"
         className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
       />
-      {/* Dark vignette so headline stays legible */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 z-0"
-        style={{
-          background:
-            "radial-gradient(ellipse at center, rgba(10,30,20,0.7) 0%, rgba(10,30,20,0.55) 45%, rgba(10,30,20,0.4) 100%)",
-        }}
-      />
-
-      {/* Psychedelic cartoon cluster — parallax, ~30% opacity */}
-      <PsychedelicBackground />
 
       {/* Marquee top */}
       <div className="absolute left-0 right-0 top-24 z-10 overflow-hidden border-y-2 border-ink bg-neon-yellow py-3">
