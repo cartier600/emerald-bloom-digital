@@ -46,7 +46,7 @@ export function Hero() {
         controls={false}
         className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
       >
-        <source src="/entrance-loop.mov" type="video/quicktime" />
+        <source src="https://files.catbox.moe/8rh1df.MP4" type="video/mp4" />
       </video>
 
       {/* Marquee top */}
