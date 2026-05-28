@@ -3,6 +3,7 @@ import { EASE } from "@/lib/motion";
 import hybrid from "@/assets/strain-hybrid.jpg";
 import { PsychedelicBackground } from "@/components/PsychedelicBackground";
 import { prefetchSection } from "@/lib/prefetchSection";
+import { useEffect, useRef } from "react";
 
 const container = {
   hidden: {},
@@ -18,11 +19,25 @@ const riseSmall = {
 };
 
 export function Hero() {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = true;
+    const tryPlay = () => v.play().catch(() => {});
+    tryPlay();
+    const onVisible = () => {
+      if (document.visibilityState === "visible") tryPlay();
+    };
+    document.addEventListener("visibilitychange", onVisible);
+    return () => document.removeEventListener("visibilitychange", onVisible);
+  }, []);
   return (
     <section className="relative min-h-screen overflow-hidden bg-forest pt-36 pb-32 text-cream">
       {/* Doodle background + synchronized micro-animations */}
       {/* Looping background video */}
       <video
+        ref={videoRef}
         aria-hidden
         autoPlay
         loop
