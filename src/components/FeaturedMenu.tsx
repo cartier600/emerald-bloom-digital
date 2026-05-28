@@ -4,6 +4,7 @@ import flowerImg from "@/assets/product-flower.jpg";
 import gummiesImg from "@/assets/product-gummies.jpg";
 import rosinImg from "@/assets/product-rosin.jpg";
 import prerollImg from "@/assets/product-preroll.jpg";
+import { TrippyShapes } from "@/components/TrippyShapes";
 
 type Product = {
   category: string;
@@ -90,8 +91,9 @@ export function FeaturedMenu() {
     return "#5cffb0"; // hybrid + fallback
   };
   return (
-    <section id="menu" className="bg-cream px-6 py-28 md:px-10 md:py-36">
-      <div className="mx-auto max-w-[1600px]">
+    <section id="menu" className="relative overflow-hidden bg-cream px-6 py-28 md:px-10 md:py-36">
+      <TrippyShapes variant="menu" />
+      <div className="relative z-10 mx-auto max-w-[1600px]">
         <div className="flex flex-wrap items-end justify-between gap-8 border-b-2 border-ink pb-10">
           <div>
             <p className="text-sm font-bold uppercase tracking-[0.3em] text-ink/60">
