@@ -34,7 +34,7 @@ export function AgeGate() {
         loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none scale-105"
+        className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
       >
         <source
           src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
@@ -53,7 +53,7 @@ export function AgeGate() {
         </h1>
 
         <p className="text-xs md:text-sm font-bold tracking-widest text-emerald-400 uppercase mb-8">
-          First Legal Cannabis Dispensary
+          THE ROCKAWAYS' FIRST LEGAL DISPENSARY
         </p>
 
         <div className="w-12 h-[2px] bg-gradient-to-r from-pink-500 via-amber-400 to-emerald-500 mb-8" />

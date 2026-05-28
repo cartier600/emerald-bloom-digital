@@ -33,7 +33,6 @@ export function Hero() {
   }, []);
   return (
     <section className="relative min-h-screen overflow-hidden bg-forest pt-36 pb-32 text-cream">
-      {/* Doodle background + synchronized micro-animations */}
       {/* Looping background video */}
       <video
         ref={videoRef}
