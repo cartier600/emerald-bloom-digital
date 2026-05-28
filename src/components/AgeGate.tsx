@@ -36,7 +36,7 @@ export function AgeGate() {
         playsInline
         className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
       >
-        <source src="/hero-video.mp4" type="video/mp4" />
+        <source src="/ScreenRecording_05-27-2026 22-37-59_1.mov" type="video/quicktime" />
       </video>
 
       <div className="absolute inset-0 bg-black/30 z-10" />
