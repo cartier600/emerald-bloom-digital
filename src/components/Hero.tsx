@@ -42,7 +42,6 @@ export function Hero() {
         autoPlay
         loop
         muted
-        defaultMuted
         playsInline
         preload="auto"
         disablePictureInPicture
