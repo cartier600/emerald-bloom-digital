@@ -75,7 +75,7 @@ export function ScrollBanner({ reverse = false }: ScrollBannerProps) {
         <text
           className="font-display uppercase"
           style={{
-            fontSize: "clamp(28px, 5.5vw, 88px)",
+            fontSize: "clamp(2rem, 6.5vw, 6rem)",
             fontWeight: 900,
             letterSpacing: "0.04em",
             fill: `url(#grad-${pathId})`,

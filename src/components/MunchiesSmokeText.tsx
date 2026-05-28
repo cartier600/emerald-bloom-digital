@@ -95,7 +95,8 @@ export function MunchiesSmokeText() {
         <img
           src={logoScript}
           alt="Munchies Dispensary New York"
-          className="block h-auto w-full max-w-[1180px] select-none drop-shadow-[0_4px_18px_rgba(0,0,0,0.35)]"
+          className="block h-auto select-none drop-shadow-[0_4px_18px_rgba(0,0,0,0.35)]"
+          style={{ width: "clamp(280px, 92vw, 1180px)" }}
           draggable={false}
         />
       </motion.span>

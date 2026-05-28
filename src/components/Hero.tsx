@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { EASE } from "@/lib/motion";
 import hybrid from "@/assets/strain-hybrid.jpg";
 import { PsychedelicBackground } from "@/components/PsychedelicBackground";
+import { prefetchSection } from "@/lib/prefetchSection";
 
 const container = {
   hidden: {},
@@ -72,7 +73,11 @@ export function Hero() {
           animate="show"
         >
           <div>
-            <motion.p variants={riseSmall} className="text-sm font-bold uppercase tracking-[0.3em] text-cream/70">
+            <motion.p
+              variants={riseSmall}
+              className="whitespace-nowrap font-bold uppercase tracking-[0.3em] text-cream/70"
+              style={{ fontSize: "clamp(0.625rem, 1.35vw, 0.95rem)" }}
+            >
               THE ROCKAWAYS' FIRST LEGAL CANNABIS DISPENSARY
             </motion.p>
             <h1 className="sr-only">Munchies Dispensary New York</h1>
@@ -88,6 +93,8 @@ export function Hero() {
                 whileHover={{ scale: 1.04, transition: { type: "spring", stiffness: 300, damping: 18 } }}
                 whileTap={{ scale: 0.97 }}
                 href="#menu"
+                onPointerEnter={() => prefetchSection("menu")}
+                onTouchStart={() => prefetchSection("menu")}
                 className="font-display group flex items-center gap-3 rounded-full bg-athletic px-8 py-5 text-lg text-ink"
               >
                 VIEW MENU
@@ -99,6 +106,8 @@ export function Hero() {
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.97 }}
                 href="#strains"
+                onPointerEnter={() => prefetchSection("strains")}
+                onTouchStart={() => prefetchSection("strains")}
                 className="rounded-full border-2 border-cream px-8 py-5 text-base font-semibold text-cream transition-colors hover:bg-cream hover:text-forest"
               >
                 Strain Library

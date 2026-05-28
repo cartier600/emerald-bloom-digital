@@ -6,6 +6,20 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Smooth in-page navigation for premium feel; targets sit below the fixed nav. */
+html {
+  scroll-behavior: smooth;
+}
+[id="menu"],
+[id="strains"],
+[id="location"],
+[id="best-sellers"] {
+  scroll-margin-top: 96px;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
 /*
  * Design system definition.
  *
