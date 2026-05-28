@@ -1,27 +1,33 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 const KEY = "dispensary-verified";
 
-export function AgeGate() {
-  const [shouldRender, setShouldRender] = useState(true);
+export function AgeGate({ children }: { children?: ReactNode }) {
+  const [verified, setVerified] = useState(false);
+  const [hydrated, setHydrated] = useState(false);
   const [fadeOut, setFadeOut] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (window.sessionStorage.getItem(KEY) === "true") setShouldRender(false);
+    if (window.sessionStorage.getItem(KEY) === "true") setVerified(true);
+    setHydrated(true);
   }, []);
 
   const handleVerify = (over21: boolean) => {
     if (over21) {
       window.sessionStorage.setItem(KEY, "true");
       setFadeOut(true);
-      setTimeout(() => setShouldRender(false), 700);
+      setTimeout(() => setVerified(true), 700);
     } else {
       window.location.href = "https://www.responsibility.org/";
     }
   };
 
-  if (!shouldRender) return null;
+  if (!hydrated) {
+    return <div className="fixed inset-0 w-screen h-screen z-[9999] bg-black" />;
+  }
+
+  if (verified) return <>{children}</>;
 
   return (
     <div
@@ -36,7 +42,7 @@ export function AgeGate() {
         playsInline
         className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
       >
-        <source src="/ScreenRecording_05-27-2026 22-37-59_1.mov" type="video/quicktime" />
+        <source src="/landing-loop.mov" type="video/quicktime" />
       </video>
 
       <div className="absolute inset-0 bg-black/30 z-10" />
