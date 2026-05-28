@@ -248,4 +248,50 @@ html {
     color: transparent;
     animation: iridescentShift 12s ease infinite;
   }
+
+  /* Trippy free-moving shape backdrops */
+  .trippy-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    mix-blend-mode: multiply;
+    will-change: transform;
+  }
+  .trippy-ring {
+    position: absolute;
+    border-radius: 50%;
+    border-width: 6px;
+    border-style: solid;
+    will-change: transform;
+  }
+  .trippy-squiggle {
+    position: absolute;
+    will-change: transform;
+  }
+  @keyframes trippyDriftA {
+    0%   { transform: translate(0,0) scale(1) rotate(0deg); }
+    33%  { transform: translate(8vw,-4vh) scale(1.15) rotate(60deg); }
+    66%  { transform: translate(-6vw,6vh) scale(0.9) rotate(-40deg); }
+    100% { transform: translate(0,0) scale(1) rotate(0deg); }
+  }
+  @keyframes trippyDriftB {
+    0%   { transform: translate(0,0) scale(1) rotate(0deg); }
+    50%  { transform: translate(-10vw,8vh) scale(1.2) rotate(-90deg); }
+    100% { transform: translate(0,0) scale(1) rotate(0deg); }
+  }
+  @keyframes trippyDriftC {
+    0%   { transform: translate(0,0) scale(0.95) rotate(0deg); }
+    50%  { transform: translate(6vw,-8vh) scale(1.1) rotate(120deg); }
+    100% { transform: translate(0,0) scale(0.95) rotate(0deg); }
+  }
+  @keyframes trippySpin {
+    from { transform: rotate(0deg) scale(1); }
+    50%  { transform: rotate(180deg) scale(1.1); }
+    to   { transform: rotate(360deg) scale(1); }
+  }
+  .trippy-drift-a { animation: trippyDriftA 22s ease-in-out infinite; }
+  .trippy-drift-b { animation: trippyDriftB 28s ease-in-out infinite; }
+  .trippy-drift-c { animation: trippyDriftC 24s ease-in-out infinite; }
+  .trippy-spin-slow { animation: trippySpin 30s linear infinite; }
+  .trippy-spin-rev  { animation: trippySpin 36s linear infinite reverse; }
 }
